@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ShopOnlineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="StatusCat" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDU" Type="int" />
+          <Property Name="IDP" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="text" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="avatar" Type="varchar" MaxLength="150" />
+          <Property Name="IDP" Type="int" />
+          <Property Name="StatusIMG" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Oder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustName" Type="nvarchar" MaxLength="150" />
+          <Property Name="CustAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="CustEmail" Type="varchar" MaxLength="70" />
+          <Property Name="CustPhone" Type="varchar" MaxLength="30" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="30" />
+          <Property Name="IDU" Type="int" />
+          <Property Name="DayCreate" Type="date" />
+        </EntityType>
+        <EntityType Name="OderDetail">
+          <Key>
+            <PropertyRef Name="IDO" />
+            <PropertyRef Name="IDP" />
+          </Key>
+          <Property Name="IDO" Type="int" Nullable="false" />
+          <Property Name="IDP" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="StatusPay" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="description" Type="ntext" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="IDC" Type="int" />
+          <Property Name="StatusProd" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="pwd" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+          <Property Name="address" Type="nvarchar" MaxLength="300" />
+          <Property Name="phone" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="70" />
+          <Property Name="zipcode" Type="varchar" MaxLength="30" />
+          <Property Name="avatar" Type="varchar" MaxLength="200" />
+          <Property Name="usertype" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Image__IDP__276EDEB3">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="IDP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OderDetail__IDO__286302EC">
+          <End Role="Oder" Type="Self.Oder" Multiplicity="1" />
+          <End Role="OderDetail" Type="Self.OderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OderDetail">
+              <PropertyRef Name="IDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OderDetail__IDP__29572725">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OderDetail" Type="Self.OderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OderDetail">
+              <PropertyRef Name="IDP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__IDC__2A4B4B5E">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IDC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopOnlineModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oder" EntityType="Self.Oder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OderDetail" EntityType="Self.OderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Image__IDP__276EDEB3" Association="Self.FK__Image__IDP__276EDEB3">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OderDetail__IDO__286302EC" Association="Self.FK__OderDetail__IDO__286302EC">
+            <End Role="Oder" EntitySet="Oder" />
+            <End Role="OderDetail" EntitySet="OderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OderDetail__IDP__29572725" Association="Self.FK__OderDetail__IDP__29572725">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OderDetail" EntitySet="OderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__IDC__2A4B4B5E" Association="Self.FK__Product__IDC__2A4B4B5E">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopOnlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusCat" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__IDC__2A4B4B5E" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDU" Type="Int32" />
+          <Property Name="IDP" Type="Int32" Nullable="false" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="avatar" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IDP" Type="Int32" />
+          <Property Name="StatusIMG" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Image__IDP__276EDEB3" FromRole="Image" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Oder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CustAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CustEmail" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CustPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Zipcode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IDU" Type="Int32" />
+          <Property Name="DayCreate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="OderDetails" Relationship="Self.FK__OderDetail__IDO__286302EC" FromRole="Oder" ToRole="OderDetail" />
+        </EntityType>
+        <EntityType Name="OderDetail">
+          <Key>
+            <PropertyRef Name="IDO" />
+            <PropertyRef Name="IDP" />
+          </Key>
+          <Property Name="IDO" Type="Int32" Nullable="false" />
+          <Property Name="IDP" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="StatusPay" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Oder" Relationship="Self.FK__OderDetail__IDO__286302EC" FromRole="OderDetail" ToRole="Oder" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__OderDetail__IDP__29572725" FromRole="OderDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="IDC" Type="Int32" />
+          <Property Name="StatusProd" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Product__IDC__2A4B4B5E" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Images" Relationship="Self.FK__Image__IDP__276EDEB3" FromRole="Product" ToRole="Image" />
+          <NavigationProperty Name="OderDetails" Relationship="Self.FK__OderDetail__IDP__29572725" FromRole="Product" ToRole="OderDetail" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pwd" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="zipcode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="usertype" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Product__IDC__2A4B4B5E">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IDC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Image__IDP__276EDEB3">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="IDP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OderDetail__IDO__286302EC">
+          <End Role="Oder" Type="Self.Oder" Multiplicity="1" />
+          <End Role="OderDetail" Type="Self.OderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OderDetail">
+              <PropertyRef Name="IDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OderDetail__IDP__29572725">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OderDetail" Type="Self.OderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OderDetail">
+              <PropertyRef Name="IDP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopOnlineEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="Oders" EntityType="Self.Oder" />
+          <EntitySet Name="OderDetails" EntityType="Self.OderDetail" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Product__IDC__2A4B4B5E" Association="Self.FK__Product__IDC__2A4B4B5E">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Image__IDP__276EDEB3" Association="Self.FK__Image__IDP__276EDEB3">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OderDetail__IDO__286302EC" Association="Self.FK__OderDetail__IDO__286302EC">
+            <End Role="Oder" EntitySet="Oders" />
+            <End Role="OderDetail" EntitySet="OderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OderDetail__IDP__29572725" Association="Self.FK__OderDetail__IDP__29572725">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OderDetail" EntitySet="OderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShopOnlineModelStoreContainer" CdmEntityContainer="ShopOnlineEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ShopOnlineModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="StatusCat" ColumnName="StatusCat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="ShopOnlineModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="IDU" ColumnName="IDU" />
+                <ScalarProperty Name="IDP" ColumnName="IDP" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="ShopOnlineModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="IDP" ColumnName="IDP" />
+                <ScalarProperty Name="StatusIMG" ColumnName="StatusIMG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oders">
+            <EntityTypeMapping TypeName="ShopOnlineModel.Oder">
+              <MappingFragment StoreEntitySet="Oder">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CustName" ColumnName="CustName" />
+                <ScalarProperty Name="CustAddress" ColumnName="CustAddress" />
+                <ScalarProperty Name="CustEmail" ColumnName="CustEmail" />
+                <ScalarProperty Name="CustPhone" ColumnName="CustPhone" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="IDU" ColumnName="IDU" />
+                <ScalarProperty Name="DayCreate" ColumnName="DayCreate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OderDetails">
+            <EntityTypeMapping TypeName="ShopOnlineModel.OderDetail">
+              <MappingFragment StoreEntitySet="OderDetail">
+                <ScalarProperty Name="IDO" ColumnName="IDO" />
+                <ScalarProperty Name="IDP" ColumnName="IDP" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="StatusPay" ColumnName="StatusPay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ShopOnlineModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="IDC" ColumnName="IDC" />
+                <ScalarProperty Name="StatusProd" ColumnName="StatusProd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ShopOnlineModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="usertype" ColumnName="usertype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
