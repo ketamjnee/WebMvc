@@ -22,8 +22,8 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult addCategory(Category cate1)
         {
-            cate = new CategoryDAO();
-            if (cate.addCate(cate1.name))
+            
+            if (CategoryDAO.addCate(cate1.name))
             {
                 Session["addcateS"] = "Add Successfully";
             }
@@ -35,9 +35,14 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult editCategory()
         {
-            cate = new CategoryDAO();
-            var result = cate.getListCate();
+            
+            var result = CategoryDAO.getListCate();
             return View(result.ToList());
+        }
+        public ActionResult updateCate(int id)
+        {
+            ViewBag.id = id;
+            return View();
         }
     }
 }

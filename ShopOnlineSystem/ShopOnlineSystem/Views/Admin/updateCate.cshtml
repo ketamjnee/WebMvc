@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "updateCate";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ShopOnlineSystem.Models.ModelData.ShopOnlineEntities db = new ShopOnlineSystem.Models.ModelData.ShopOnlineEntities();
+    var id = ViewBag.id;
+    var cate = db.Categories.Find(id);
+
+}
+<h2>Chỉnh sửa Danh mục</h2>
+<div class="container-fluid">
+    <form action="@Url.Action("updateCateDAO")" method="post">
+        <div class="form-group">
+            <label for="name">Tên danh mục</label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Tên danh mục">
+            <small id="emailHelp" class="form-text text-muted">Không nên để ký tự đặc biệt </small>
+        </div>
+        <select class="form-control form-control-sm">
+            <option>Small select</option>
+        </select>
+    </form>
+</div>
