@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bdc930be001c45d1b44ee125cd9d0224" Name="Diagram1">
-        <EntityTypeShape EntityType="ShopOnlineModel.Category" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopOnlineModel.Comment" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopOnlineModel.Image" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopOnlineModel.Oder" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopOnlineModel.OderDetail" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopOnlineModel.Product" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopOnlineModel.User" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
-        <AssociationConnector Association="ShopOnlineModel.FK__Product__IDC__2A4B4B5E" ManuallyRouted="false" />
-        <AssociationConnector Association="ShopOnlineModel.FK__Image__IDP__276EDEB3" ManuallyRouted="false" />
-        <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDO__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDP__29572725" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ShopOnlineModel.Category" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="ShopOnlineModel.Comment" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ShopOnlineModel.Image" Width="1.5" PointX="0.5" PointY="5.625" />
+        <EntityTypeShape EntityType="ShopOnlineModel.Oder" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="ShopOnlineModel.OderDetail" Width="1.5" PointX="5.25" PointY="2.5" />
+        <EntityTypeShape EntityType="ShopOnlineModel.Product" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="ShopOnlineModel.User" Width="1.5" PointX="7.75" PointY="6.75" />
+        <AssociationConnector Association="ShopOnlineModel.FK__Product__IDC__2D27B809" />
+        <AssociationConnector Association="ShopOnlineModel.FK__Image__IDP__02FC7413" />
+        <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDO__619B8048" />
+        <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDP__628FA481" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

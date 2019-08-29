@@ -9,6 +9,6 @@ namespace ShopOnlineSystem.Models.ModelView
     {
         public int ID { get;set; }
         public string name { get; set; }
-        public int statusCat { get; set; }
+        public bool statusCat { get; set; }
     }
 }

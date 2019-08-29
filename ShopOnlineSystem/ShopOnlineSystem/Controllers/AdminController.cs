@@ -23,7 +23,7 @@ namespace ShopOnlineSystem.Controllers
         public ActionResult addCategory(Category cate1)
         {
             
-            if (CategoryDAO.addCate(cate1.name))
+            if (CategoryDAO.addCate(cate1))
             {
                 Session["addcateS"] = "Add Successfully";
             }

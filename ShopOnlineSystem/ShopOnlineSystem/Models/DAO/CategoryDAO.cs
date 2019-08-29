@@ -23,23 +23,17 @@ namespace ShopOnlineSystem.Models.DAO
                
             return result.ToList();
         }
-        public static bool addCate(string name)
+        public static bool addCate(ModelView.Category item)
         {
-            try
+            db = new ShopOnlineEntities();
+            Category cat = new Category { name = item.name, StatusCat = true };
+            var rs = db.Categories.Add(cat);
+            var check = db.SaveChanges();
+            if( check> 0)
             {
-                Category cate = new Category(); 
-                cate.name = name;
-                db.Categories.Add(cate);
-                db.SaveChanges();
-               
                 return true;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
             return false;
-        
         }
         public static bool updateCate(int id, string name, bool a)
         {
@@ -57,12 +51,6 @@ namespace ShopOnlineSystem.Models.DAO
                 throw ex;
             }
             return false;
-        }
-        public static List<ModelView.Category> getCatPaging(int pageindex,int pagesize)
-        {
-            db = new ShopOnlineEntities();
-            var c = db.Categories.OrderBy(d => d.id).Skip(pageindex*pagesize).Take(pagesize).Select(f => new ModelView.Category {ID=f.id,name=f.name,statusCat=Convert.ToInt32(f.StatusCat)});
-            return c;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ShopOnlineSystem.Models
         {
             return CategoryDAO.getListCate();
         }
-        public static bool addCate(string name)
+        public static bool addCate(ModelView.Category name)
         {
             return CategoryDAO.addCate(name);
         }
