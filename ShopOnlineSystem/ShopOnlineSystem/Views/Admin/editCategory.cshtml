@@ -1,0 +1,36 @@
+﻿@model List<ShopOnlineSystem.Models.ModelData.Category>
+@{
+    ViewBag.Title = "editCategory";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int stt = 0;
+}
+
+<h2>Chỉnh sửa danh mục</h2>
+<div class="container-fluid">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên danh mục</th>
+                <th scope="col">Số lượng sản phẩm</th>
+                <th scope="col">Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                stt += 1;
+                <tr>
+                    <th scope="row">@stt</th>
+                    <td>@item.name</td>
+                    <td> @item.Products.Count</td>
+                    <td>@*@Html.Action("Sửa","updateCate","Admin")
+                        @Html.Action("Xóa","deleteCate","Admin")*@                   
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>

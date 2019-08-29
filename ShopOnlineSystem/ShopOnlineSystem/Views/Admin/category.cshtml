@@ -4,5 +4,33 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>category</h2>
+<h2>Thêm danh mục sản phẩm</h2>
+<div class="container-fluid">
+    <form action="@Url.Action("addCategory")" method="post" class="">
+        <div class="">
+            @{
+                if (Session["addcateS"] != null)
+                {
+                    ViewBag.addcate = Session["addcateS"].ToString();
+                    <label class="btn btn-success">@ViewBag.addcate</label>
 
+                }
+                if (Session["addcateF"] != null)
+                {
+                    ViewBag.addcate = Session["addcateF"].ToString();
+                    <label class="btn btn-danger">@ViewBag.addcate</label>
+                }
+
+            }
+            <input type="text" name="name" value="" id="name" class="form-control" placeholder="Nhập tên danh mục mới" />
+        </div>
+        <div class="form-group">
+
+            <br />
+            <input type="submit" name="okey" value="Thêm danh mục" class="btn btn-success" />
+        </div>
+    </form>
+</div>
+@{Session["addcateS"] = null;
+    Session["addcateF"] = null;
+        }

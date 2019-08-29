@@ -132,6 +132,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAO\CategoryDAO.cs" />
     <Compile Include="Models\ModelData\Category.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
@@ -168,6 +169,7 @@
     <Compile Include="Models\ModelData\User.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelView\Category.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1995,12 +1997,11 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\category.cshtml" />
+    <Content Include="Views\Admin\editCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Business\" />
-    <Folder Include="Models\DAO\" />
-    <Folder Include="Models\ModelView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
