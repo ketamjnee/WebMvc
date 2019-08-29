@@ -58,5 +58,11 @@ namespace ShopOnlineSystem.Models.DAO
             }
             return false;
         }
+        public static List<ModelView.Category> getCatPaging(int pageindex,int pagesize)
+        {
+            db = new ShopOnlineEntities();
+            var c = db.Categories.OrderBy(d => d.id).Skip(pageindex*pagesize).Take(pagesize).Select(f => new ModelView.Category {ID=f.id,name=f.name,statusCat=Convert.ToInt32(f.StatusCat)});
+            return c;
+        }
     }
 }
