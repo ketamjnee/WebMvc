@@ -23,12 +23,13 @@ namespace ShopOnlineSystem.Models.DAO
                
             return result.ToList();
         }
-        public static bool addCate(string name)
+        public static bool addCate(ModelView.Category item)
         {
+            
             try
             {
-                Category cate = new Category(); 
-                cate.name = name;
+                db = new ShopOnlineEntities();
+                Category cate = new Category {name = item.name, StatusCat = true }; 
                 db.Categories.Add(cate);
                 db.SaveChanges();
                
@@ -42,19 +43,19 @@ namespace ShopOnlineSystem.Models.DAO
             return false;
         
         }
-        public static bool updateCate(int id, string name, bool a)
+        public static bool updateCate(ModelView.Category item)
         {
             try
             {
-                Category cate = db.Categories.Find(id) as Category;
-                cate.name = name;
-                cate.StatusCat = a;
+                Category cate = db.Categories.Find(item.id) as Category;
+                cate.name = item.name;
+                cate.StatusCat = item.statusCat;
                 db.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
-
+                return false;
                 throw ex;
             }
             return false;

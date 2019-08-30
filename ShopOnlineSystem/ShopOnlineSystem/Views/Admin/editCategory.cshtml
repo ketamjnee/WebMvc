@@ -23,7 +23,7 @@
                 <tr>
                     <th scope="row">@stt</th>
                     <td>@item.name</td>
-                    <td> @item.Products.Count</td>
+                    <td>@item.Products.Count</td>
                     <td>@Html.ActionLink("Sửa","updateCate","Admin", new {id = item.id }, null)
                         @if (item.Products.Count == 0) {@Html.ActionLink("Xóa","delete","Admin",new { id = item.id}) }
                     </td>

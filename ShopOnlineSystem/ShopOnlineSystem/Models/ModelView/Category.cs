@@ -8,6 +8,7 @@ namespace ShopOnlineSystem.Models.ModelView
     public class Category
     {
         public string name { get; set; }
-        public int statusCat { get; set; }
+        public bool statusCat { get; set; }
+        public int id { get; set; }
     }
 }

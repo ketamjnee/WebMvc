@@ -14,13 +14,13 @@ namespace ShopOnlineSystem.Models
         {
             return CategoryDAO.getListCate();
         }
-        public static bool addCate(string name)
+        public static bool addCate(ModelView.Category item)
         {
-            return CategoryDAO.addCate(name);
+            return CategoryDAO.addCate(item);
         }
-        public static bool updateCate(int id, string name, bool a)
+        public static bool updateCate(ModelView.Category item)
         {
-            return CategoryDAO.updateCate(id, name, a);
+            return CategoryDAO.updateCate(item);
         }
         #endregion
 

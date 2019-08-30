@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ShopOnlineSystem.Models;
 using ShopOnlineSystem.Models.DAO;
 using ShopOnlineSystem.Models.ModelView;
-
 namespace ShopOnlineSystem.Controllers
 {
     public class AdminController : Controller
     {
+        Repository function;
         CategoryDAO cate;
         // GET: Admin
         public ActionResult Index()
@@ -23,7 +24,7 @@ namespace ShopOnlineSystem.Controllers
         public ActionResult addCategory(Category cate1)
         {
             
-            if (CategoryDAO.addCate(cate1.name))
+            if (CategoryDAO.addCate(cate1))
             {
                 Session["addcateS"] = "Add Successfully";
             }
@@ -43,6 +44,13 @@ namespace ShopOnlineSystem.Controllers
         {
             ViewBag.id = id;
             return View();
+        }
+        public ActionResult updateCateDAO(Category cate)
+        {
+
+           CategoryDAO.updateCate(cate);
+            
+            return RedirectToAction("updateCate");
         }
     }
 }
