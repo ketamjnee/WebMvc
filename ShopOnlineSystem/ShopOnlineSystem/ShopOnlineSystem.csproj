@@ -2095,6 +2095,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Picture\Admin\Product\" />
+    <Folder Include="Content\Picture\User\" />
     <Folder Include="Models\Business\" />
   </ItemGroup>
   <ItemGroup>

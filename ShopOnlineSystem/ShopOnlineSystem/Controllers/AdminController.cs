@@ -25,8 +25,8 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult addCategory(Category cate1)
         {
-            
-            if (CategoryDAO.addCate(cate1))
+            var a = 123;
+            if (Repository.addCate(cate1))
             {
                 Session["addcateS"] = "Add Successfully";
             }
@@ -56,6 +56,7 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult deleteCate(int id)
         {
+            var asd = 123;
              Repository.deleteCate(id); 
             return RedirectToAction("editCategory");
         }
@@ -77,7 +78,7 @@ namespace ShopOnlineSystem.Controllers
             //item.price = price;
             if (picture != null)
             {
-                string path = Path.Combine(Server.MapPath("~/Content/Picture/Product"), Path.GetFileName(picture.FileName));
+                string path = Path.Combine(Server.MapPath("~/Content/Picture/Admin/Product"), Path.GetFileName(picture.FileName));
                 picture.SaveAs(path);
             }
             Repository.addProduct(item,picture);
@@ -97,7 +98,7 @@ namespace ShopOnlineSystem.Controllers
         {
             if (picture != null)
             {
-                string path = Path.Combine(Server.MapPath("~/Content/Picture/Product"), Path.GetFileName(picture.FileName));
+                string path = Path.Combine(Server.MapPath("~/Content/Picture/Admin/Product"), Path.GetFileName(picture.FileName));
                 picture.SaveAs(path);
             }
             Repository.updateProduct(item,picture);

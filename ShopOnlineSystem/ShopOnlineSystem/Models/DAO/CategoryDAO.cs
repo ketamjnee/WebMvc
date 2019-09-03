@@ -18,33 +18,26 @@ namespace ShopOnlineSystem.Models.DAO
         public static List<Category> getListCate()
         {
             db = new ShopOnlineEntities();
-            var result = from viet in db.Categories select viet;
+            var result = from viet in db.Categories where viet.StatusCat == 1 select viet;
             //List<Category> cate = result;
                
             return result.ToList();
         }
         public static bool addCate(ModelView.Category item)
         {
-            try
-            {
-                Category cate = new Category();
-                cate.name = item.name;
+                db = new ShopOnlineEntities();
+                Category cate = new Category {
+                    name = item.name,
+                    StatusCat = 1
+                };
                 db.Categories.Add(cate);
-                db.SaveChanges();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return false;
+                return db.SaveChanges()>0;
         }
         public static bool updateCate(ModelView.Category item)
         {
             try
             {
-                Category cate = db.Categories.Find(item.id) as Category;
+                Category cate = db.Categories.Find(item.ID) as Category;
                 cate.name = item.name;
                 cate.StatusCat = 1;
                 db.SaveChanges();
@@ -62,7 +55,8 @@ namespace ShopOnlineSystem.Models.DAO
             try
             {
                 Category cate = db.Categories.Find(id) as Category;
-                cate.StatusCat = 2;
+                db.Categories.Remove(cate);
+                db.SaveChanges();
                 return true;
             }
             catch (Exception ex)
