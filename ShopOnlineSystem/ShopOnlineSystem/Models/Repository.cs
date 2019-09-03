@@ -10,6 +10,10 @@ namespace ShopOnlineSystem.Models
     public class Repository
     {
         #region category
+        public static bool deleteCate(int id)
+        {
+            return CategoryDAO.deleteCate(id);
+        }
         public static List<ModelData.Category> getListCate()
         {
             return CategoryDAO.getListCate();

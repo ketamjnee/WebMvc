@@ -27,12 +27,16 @@ namespace ShopOnlineSystem.Models.DAO
         {
             try
             {
-                Category cate = new Category(); 
-                cate.name = name;
+                Category cate = new Category();
+                cate.name = item.name;
                 db.Categories.Add(cate);
                 db.SaveChanges();
-               
+
                 return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return false;
         }
@@ -42,13 +46,28 @@ namespace ShopOnlineSystem.Models.DAO
             {
                 Category cate = db.Categories.Find(item.id) as Category;
                 cate.name = item.name;
-                cate.StatusCat = item.statusCat;
+                cate.StatusCat = 1;
                 db.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
                 return false;
+                throw ex;
+            }
+            return false;
+        }
+        public static bool deleteCate(int id)
+        {
+            try
+            {
+                Category cate = db.Categories.Find(id) as Category;
+                cate.StatusCat = 2;
+                return true;
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
             return false;
