@@ -126,9 +126,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
+    <Compile Include="App_Start\BundleConfig3.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FilterConfig2.cs" />
+    <Compile Include="App_Start\FilterConfig3.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\RouteConfig2.cs" />
+    <Compile Include="App_Start\RouteConfig3.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1781,6 +1788,52 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\user\assets\css\animate.css" />
+    <Content Include="Content\user\assets\css\bootstrap.min.css" />
+    <Content Include="Content\user\assets\css\classy-nav.min.css" />
+    <Content Include="Content\user\assets\css\core-style.css" />
+    <Content Include="Content\user\assets\css\font-awesome.min.css" />
+    <Content Include="Content\user\assets\css\jquery-ui.min.css" />
+    <Content Include="Content\user\assets\css\magnific-popup.css" />
+    <Content Include="Content\user\assets\css\nice-select.css" />
+    <Content Include="Content\user\assets\css\owl.carousel.css" />
+    <Content Include="Content\user\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\user\assets\img\bg-img\1.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\2.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\3.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\4.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\5.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\6.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\7.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\8.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\9.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\cart1.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\cart2.jpg" />
+    <Content Include="Content\user\assets\img\bg-img\cart3.jpg" />
+    <Content Include="Content\user\assets\img\core-img\cart.png" />
+    <Content Include="Content\user\assets\img\core-img\favicon.ico" />
+    <Content Include="Content\user\assets\img\core-img\favorites.png" />
+    <Content Include="Content\user\assets\img\core-img\logo.png" />
+    <Content Include="Content\user\assets\img\core-img\paypal.png" />
+    <Content Include="Content\user\assets\img\core-img\search.png" />
+    <Content Include="Content\user\assets\img\product-img\pro-big-1.jpg" />
+    <Content Include="Content\user\assets\img\product-img\pro-big-2.jpg" />
+    <Content Include="Content\user\assets\img\product-img\pro-big-3.jpg" />
+    <Content Include="Content\user\assets\img\product-img\pro-big-4.jpg" />
+    <Content Include="Content\user\assets\img\product-img\product1.jpg" />
+    <Content Include="Content\user\assets\img\product-img\product2.jpg" />
+    <Content Include="Content\user\assets\img\product-img\product3.jpg" />
+    <Content Include="Content\user\assets\img\product-img\product4.jpg" />
+    <Content Include="Content\user\assets\img\product-img\product5.jpg" />
+    <Content Include="Content\user\assets\img\product-img\product6.jpg" />
+    <Content Include="Content\user\assets\js\active.js" />
+    <Content Include="Content\user\assets\js\bootstrap.min.js" />
+    <Content Include="Content\user\assets\js\classy-nav.min.js" />
+    <Content Include="Content\user\assets\js\jquery\jquery-2.2.4.min.js" />
+    <Content Include="Content\user\assets\js\map-active.js" />
+    <Content Include="Content\user\assets\js\plugins.js" />
+    <Content Include="Content\user\assets\js\popper.min.js" />
+    <Content Include="Content\user\assets\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1974,6 +2027,33 @@
     <Content Include="Models\ModelData\ShopOnlineSystem.edmx.diagram">
       <DependentUpon>ShopOnlineSystem.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\user\assets\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\style.scssc" />
+    <Content Include="Content\user\assets\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_mixin.scssc" />
+    <Content Include="Content\user\assets\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_responsive.scssc" />
+    <Content Include="Content\user\assets\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_theme_color.scssc" />
+    <Content Include="Content\user\assets\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_variables.scssc" />
+    <Content Include="Content\user\assets\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\style.scssc" />
+    <Content Include="Content\user\assets\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_mixin.scssc" />
+    <Content Include="Content\user\assets\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_responsive.scssc" />
+    <Content Include="Content\user\assets\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_theme_color.scssc" />
+    <Content Include="Content\user\assets\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_variables.scssc" />
+    <Content Include="Content\user\assets\css\core-style.css.map" />
+    <Content Include="Content\user\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\user\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\user\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\user\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\user\assets\fonts\FontAwesome.otf" />
+    <Content Include="Content\user\assets\fonts\helveticaneue_medium-webfont.ttf" />
+    <Content Include="Content\user\assets\fonts\helveticaneue_medium-webfont.woff" />
+    <Content Include="Content\user\assets\fonts\helveticaneue_medium-webfont.woff2" />
+    <Content Include="Content\user\assets\fonts\helvetica_neu_bold-webfont.ttf" />
+    <Content Include="Content\user\assets\fonts\helvetica_neu_bold-webfont.woff" />
+    <Content Include="Content\user\assets\fonts\helvetica_neu_bold-webfont.woff2" />
+    <Content Include="Content\user\assets\scss\style.scss" />
+    <Content Include="Content\user\assets\scss\_mixin.scss" />
+    <Content Include="Content\user\assets\scss\_responsive.scss" />
+    <Content Include="Content\user\assets\scss\_theme_color.scss" />
+    <Content Include="Content\user\assets\scss\_variables.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1995,7 +2075,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\category.cshtml" />
@@ -2004,10 +2083,18 @@
     <Content Include="Views\Admin\addProduct.cshtml" />
     <Content Include="Views\Admin\editProduct.cshtml" />
     <Content Include="Views\Admin\updatePro.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Shared\_LayoutForm.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Category.cshtml" />
+    <Content Include="Views\User\Product.cshtml" />
+    <Content Include="Views\User\Cart.cshtml" />
+    <Content Include="Views\User\Checkout.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Picture\Product\" />
     <Folder Include="Models\Business\" />
   </ItemGroup>
   <ItemGroup>
