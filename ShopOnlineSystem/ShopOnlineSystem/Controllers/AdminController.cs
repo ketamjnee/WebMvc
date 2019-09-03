@@ -23,7 +23,7 @@ namespace ShopOnlineSystem.Controllers
         {
             return View();
         }
-        public ActionResult addCategory(Category cate1)
+        public ActionResult addCategory(ShopOnlineSystem.Models.ModelView.Category cate1)
         {
             
             if (CategoryDAO.addCate(cate1))
