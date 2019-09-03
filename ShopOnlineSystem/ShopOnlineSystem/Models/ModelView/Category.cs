@@ -7,6 +7,7 @@ namespace ShopOnlineSystem.Models.ModelView
 {
     public class Category
     {
+        public int ID { get;set; }
         public string name { get; set; }
         public bool statusCat { get; set; }
         public int id { get; set; }

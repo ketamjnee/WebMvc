@@ -25,23 +25,16 @@ namespace ShopOnlineSystem.Models.DAO
         }
         public static bool addCate(ModelView.Category item)
         {
-            
             try
             {
-                db = new ShopOnlineEntities();
-                Category cate = new Category {name = item.name, StatusCat = true }; 
+                Category cate = new Category(); 
+                cate.name = name;
                 db.Categories.Add(cate);
                 db.SaveChanges();
                
                 return true;
             }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
             return false;
-        
         }
         public static bool updateCate(ModelView.Category item)
         {
