@@ -15,12 +15,12 @@
     </div>
     <div class="form-group">
         <label for="price">Giá Sản Phẩm</label>
-        <input type="text" class="form-control" id="price" name="price" placeholder="" value="@Model.price">
+        <input type="text" class="form-control" id="price" name="price" placeholder="" value="@Model.price"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
 
     </div>
     <div class="form-group">
         <label for="stock">Số Lượng Sản Phẩm</label>
-        <input type="text" class="form-control" id="stock" name="stock" placeholder="" value="@Model.stock">
+        <input type="text" class="form-control" id="stock" name="stock" placeholder="" value="@Model.stock"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
 
     </div>
     <div class="form-group">
