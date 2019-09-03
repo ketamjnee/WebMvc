@@ -37,5 +37,13 @@ namespace ShopOnlineSystem.Controllers
         {
             return View();
         }
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        public ActionResult UserProfile()
+        {
+            return View();
+        }
     }
 }
