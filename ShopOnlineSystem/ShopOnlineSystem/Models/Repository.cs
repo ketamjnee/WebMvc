@@ -23,7 +23,28 @@ namespace ShopOnlineSystem.Models
             return CategoryDAO.updateCate(item);
         }
         #endregion
-
+        #region product
+        public static bool deleteProduct(int id)
+        {
+            return ProductDAO.deleteProduct(id);
+        }
+        public static bool updateProduct(ModelView.ProductView item, HttpPostedFileBase picture)
+        {
+            return ProductDAO.updateProduct(item, picture);
+        }
+        public static ModelView.ProductView get1Product(int id)
+        {
+            return ProductDAO.get1Product(id);
+        }
+        public static List<ModelView.ProductView> getListPro()
+        {
+            return ProductDAO.getListPro();
+        }
+        public static bool addProduct(ModelView.ProductView item, HttpPostedFileBase picture)
+        {
+            return ProductDAO.addProduct(item, picture);
+        }
+        #endregion
     }
 
 
