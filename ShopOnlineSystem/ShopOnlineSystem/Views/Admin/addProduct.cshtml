@@ -1,0 +1,45 @@
+﻿@model List<ShopOnlineSystem.Models.ModelData.Category>
+@{
+    ViewBag.Title = "addProduct";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thêm sản phẩm</h2>
+<form action="@Url.Action("addProductDAO")" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Tên Sản Phẩm</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="">
+
+    </div>
+    <div class="form-group">
+        <label for="price">Giá Sản Phẩm</label>
+        <input type="text" class="form-control" id="price" name="price" placeholder="">
+        
+    </div>
+    <div class="form-group">
+        <label for="stock">Số Lượng Sản Phẩm</label>
+        <input type="text" class="form-control" id="stock" name="stock" placeholder="">
+
+    </div>
+    <div class="form-group">
+        <label for="form7">Mô Tả Sản Phẩm</label>
+        <div class="md-form">
+            <textarea id="form7" class="md-textarea form-control" rows="3" name="description"></textarea>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="picture">Ảnh Đại Diện</label>
+        <input type="file" class="form-control" id="picture" name="picture" placeholder="">
+
+    </div>
+    <label for="category">Danh Mục Sản Phẩm</label>
+    <select class="form-control" id="category" name="IDC">
+        @foreach (var item in Model)
+        {
+            <option value="@item.id"> @item.name</option>
+        }
+    </select>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

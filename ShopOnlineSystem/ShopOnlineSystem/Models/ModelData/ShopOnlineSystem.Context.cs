@@ -27,10 +27,10 @@ namespace ShopOnlineSystem.Models.ModelData
     
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Oder> Oders { get; set; }
         public virtual DbSet<OderDetail> OderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ProImage> ProImages { get; set; }
+        public virtual DbSet<WebUser> WebUsers { get; set; }
     }
 }

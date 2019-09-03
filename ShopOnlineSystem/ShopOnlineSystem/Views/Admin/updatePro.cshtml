@@ -1,0 +1,47 @@
+﻿@model ShopOnlineSystem.Models.ModelView.ProductView
+@{
+    ViewBag.Title = "updatePro";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<h2>Chỉnh Sửa Sản Phẩm</h2>
+<form action="@Url.Action("updateProDAO")" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Tên Sản Phẩm</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="" value="@Model.name">
+        <input type="hidden"    name="id" value="@Model.id" />
+
+    </div>
+    <div class="form-group">
+        <label for="price">Giá Sản Phẩm</label>
+        <input type="text" class="form-control" id="price" name="price" placeholder="" value="@Model.price">
+
+    </div>
+    <div class="form-group">
+        <label for="stock">Số Lượng Sản Phẩm</label>
+        <input type="text" class="form-control" id="stock" name="stock" placeholder="" value="@Model.stock">
+
+    </div>
+    <div class="form-group">
+        <label for="form7">Mô Tả Sản Phẩm</label>
+        <div class="md-form">
+            <textarea id="form7" class="md-textarea form-control" rows="3" name="description">@Model.description</textarea>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="picture">Ảnh Đại Diện</label>
+        <img src="@Url.Content("~/content/picture/product/")@Model.picture" alt="..." class="img-thumbnail" height="200px" width="200px">
+        <input type="file" class="form-control" id="picture" name="picture" placeholder="">
+
+    </div>
+    <label for="category">Danh Mục Sản Phẩm</label>
+    <select class="form-control" id="category" name="IDC">
+        <option>@Model.CateName</option>
+    </select>
+    <br />
+    <button type="submit" class="btn btn-primary">Lưu Chỉnh Sửa</button>
+</form>
+
+

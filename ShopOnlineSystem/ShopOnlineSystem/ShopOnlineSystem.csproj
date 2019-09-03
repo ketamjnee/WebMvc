@@ -133,13 +133,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAO\CategoryDAO.cs" />
+    <Compile Include="Models\DAO\ProductDAO.cs" />
     <Compile Include="Models\ModelData\Category.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelData\Comment.cs">
-      <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelData\Image.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelData\Oder.cs">
@@ -149,6 +147,9 @@
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelData\Product.cs">
+      <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelData\ProImage.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelData\ShopOnlineSystem.Context.cs">
@@ -166,10 +167,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShopOnlineSystem.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelData\User.cs">
+    <Compile Include="Models\ModelData\WebUser.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelView\Category.cs" />
+    <Compile Include="Models\ModelView\ProductView.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1999,9 +2001,13 @@
     <Content Include="Views\Admin\category.cshtml" />
     <Content Include="Views\Admin\editCategory.cshtml" />
     <Content Include="Views\Admin\updateCate.cshtml" />
+    <Content Include="Views\Admin\addProduct.cshtml" />
+    <Content Include="Views\Admin\editProduct.cshtml" />
+    <Content Include="Views\Admin\updatePro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Picture\Product\" />
     <Folder Include="Models\Business\" />
   </ItemGroup>
   <ItemGroup>

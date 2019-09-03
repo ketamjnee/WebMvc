@@ -17,8 +17,8 @@ namespace ShopOnlineSystem.Models.ModelData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Images = new HashSet<Image>();
             this.OderDetails = new HashSet<OderDetail>();
+            this.ProImages = new HashSet<ProImage>();
         }
     
         public int id { get; set; }
@@ -27,12 +27,12 @@ namespace ShopOnlineSystem.Models.ModelData
         public decimal price { get; set; }
         public int stock { get; set; }
         public Nullable<int> IDC { get; set; }
-        public bool StatusProd { get; set; }
+        public byte StatusProd { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Image> Images { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OderDetail> OderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProImage> ProImages { get; set; }
     }
 }

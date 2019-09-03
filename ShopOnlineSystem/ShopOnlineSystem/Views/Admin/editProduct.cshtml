@@ -1,0 +1,44 @@
+﻿@model List<ShopOnlineSystem.Models.ModelView.ProductView>
+@{
+    ViewBag.Title = "editProduct";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int stt = 0;
+}
+
+<h2>Chỉnh Sửa Sản Phẩm</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên Sản Phẩm</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Danh Mục</th>
+            <th scope="col">Số Lượng</th>
+            <th scope="col">Mô Tả</th>
+            <th scope="col">Ảnh Đại Diện</th>
+            <th scope="col">Hành Động</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            stt += 1;
+        <tr>
+            
+            <td>@stt</td>
+            <td>@item.name</td>
+            <td>@item.price</td>
+            <td>@item.CateName</td>
+            <td>@item.stock</td>
+            <td width="20%">@item.description</td>
+            <td><img src="@Url.Content("~/content/picture/product/")@item.picture" alt="" width="40px" height="40px"/></td>
+            <td>
+                @Html.ActionLink("Sửa", "updatePro", "Admin", new { id = item.id }, null)
+            @Html.ActionLink("Xóa", "deletePro", "Admin", new { id = item.id }, null)
+        </td>
+    </tr>
+    }
+
+    </tbody>
+</table>

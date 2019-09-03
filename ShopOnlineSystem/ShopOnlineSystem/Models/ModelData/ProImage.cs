@@ -12,17 +12,13 @@ namespace ShopOnlineSystem.Models.ModelData
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class ProImage
     {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string pwd { get; set; }
-        public string name { get; set; }
-        public string address { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
-        public string zipcode { get; set; }
-        public string avatar { get; set; }
-        public bool usertype { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> IDP { get; set; }
+        public byte StatusIMG { get; set; }
+    
+        public virtual Product Product { get; set; }
     }
 }

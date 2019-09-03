@@ -7,15 +7,15 @@
       <Diagram DiagramId="bdc930be001c45d1b44ee125cd9d0224" Name="Diagram1">
         <EntityTypeShape EntityType="ShopOnlineModel.Category" Width="1.5" PointX="0.75" PointY="2.75" />
         <EntityTypeShape EntityType="ShopOnlineModel.Comment" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ShopOnlineModel.Image" Width="1.5" PointX="0.5" PointY="5.625" />
         <EntityTypeShape EntityType="ShopOnlineModel.Oder" Width="1.5" PointX="3" PointY="7.25" />
         <EntityTypeShape EntityType="ShopOnlineModel.OderDetail" Width="1.5" PointX="5.25" PointY="2.5" />
         <EntityTypeShape EntityType="ShopOnlineModel.Product" Width="1.5" PointX="3" PointY="2.125" />
-        <EntityTypeShape EntityType="ShopOnlineModel.User" Width="1.5" PointX="7.75" PointY="6.75" />
-        <AssociationConnector Association="ShopOnlineModel.FK__Product__IDC__2D27B809" />
-        <AssociationConnector Association="ShopOnlineModel.FK__Image__IDP__02FC7413" />
-        <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDO__619B8048" />
-        <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDP__628FA481" />
+        <EntityTypeShape EntityType="ShopOnlineModel.ProImage" Width="1.5" PointX="5.25" PointY="5.75" />
+        <EntityTypeShape EntityType="ShopOnlineModel.WebUser" Width="1.5" PointX="7.75" PointY="3.75" />
+        <AssociationConnector Association="ShopOnlineModel.FK__Product__IDC__2C3393D0" />
+        <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDO__2A4B4B5E" />
+        <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDP__2B3F6F97" />
+        <AssociationConnector Association="ShopOnlineModel.FK__ProImage__IDP__2D27B809" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
