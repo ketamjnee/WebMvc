@@ -26,8 +26,10 @@ namespace ShopOnlineSystem.Models.DAO
         public static bool addCate(ModelView.Category item)
         {
                 db = new ShopOnlineEntities();
-                Category cate = new Category();
-                cate.name = item.name;
+                Category cate = new Category {
+                    name = item.name,
+                    StatusCat = 1
+                };
                 db.Categories.Add(cate);
                 return db.SaveChanges()>0;
         }
@@ -35,7 +37,7 @@ namespace ShopOnlineSystem.Models.DAO
         {
             try
             {
-                Category cate = db.Categories.Find(item.id) as Category;
+                Category cate = db.Categories.Find(item.ID) as Category;
                 cate.name = item.name;
                 cate.StatusCat = 1;
                 db.SaveChanges();

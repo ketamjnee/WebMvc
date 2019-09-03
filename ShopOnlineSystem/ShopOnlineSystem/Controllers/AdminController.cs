@@ -23,10 +23,10 @@ namespace ShopOnlineSystem.Controllers
         {
             return View();
         }
-        public ActionResult addCategory(ShopOnlineSystem.Models.ModelView.Category cate1)
+        public ActionResult addCategory(Category cate1)
         {
-            
-            if (CategoryDAO.addCate(cate1))
+            var a = 123;
+            if (Repository.addCate(cate1))
             {
                 Session["addcateS"] = "Add Successfully";
             }
