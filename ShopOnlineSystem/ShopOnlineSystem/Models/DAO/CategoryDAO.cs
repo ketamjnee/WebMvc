@@ -55,7 +55,8 @@ namespace ShopOnlineSystem.Models.DAO
             try
             {
                 Category cate = db.Categories.Find(id) as Category;
-                cate.StatusCat = 2;
+                db.Categories.Remove(cate);
+                db.SaveChanges();
                 return true;
             }
             catch (Exception ex)
