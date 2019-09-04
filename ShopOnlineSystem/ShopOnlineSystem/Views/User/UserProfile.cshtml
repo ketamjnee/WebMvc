@@ -1,4 +1,4 @@
-﻿
+﻿@model ShopOnlineSystem.Models.ModelView.UserView
 @{
     ViewBag.Title = "Thông tin tài khoản";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
@@ -13,34 +13,34 @@
                         <h2>Thông tin tài khoản</h2>
                     </div>
 
-                    <form action="#" method="post">
+                    <form action="@Url.Action("UpdateUserDAO")" method="post">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" id="inputUsername" value="" placeholder="Username" required="">
+                                <input type="text" name="username" class="form-control" id="inputUsername" value="@Model.username" placeholder="Username" required="">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="email" class="form-control" id="inputEmail" value="" placeholder="Email" required="">
+                                <input type="email" name="email" class="form-control" id="inputEmail" value="@Model.email" placeholder="Email" required="">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="password" class="form-control" id="inputPassword" value="" placeholder="Mật khẩu" required="">
+                                <input type="password" name="pwd" class="form-control" id="inputPassword" value="@Model.pwd" placeholder="Mật khẩu" required="">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="password" class="form-control" id="inputPassword2" value="" placeholder="Nhập lại mật khẩu" required="">
+                                <input type="password" name="repwd" class="form-control" id="inputPassword2" value="@Model.repwd" placeholder="Nhập lại mật khẩu" required="">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" id="inputName" value="" placeholder="Tên" required="">
+                                <input type="text" name="name" class="form-control" id="inputName" value="@Model.name" placeholder="Tên" required="">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" id="inputAddress" value="" placeholder="Địa chỉ" required="">
+                                <input type="text" name="uAddress" class="form-control" id="inputAddress" value="@Model.uAddress" placeholder="Địa chỉ" required="">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" id="inputPhone" value="" placeholder="Số điện thoại" required="">
+                                <input type="text" name="phone" class="form-control" id="inputPhone" value="@Model.phone" placeholder="Số điện thoại" required="">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" id="inputZipcode" value="" placeholder="Zip code" required="">
+                                <input type="text" name="zipcode" class="form-control" id="inputZipcode" value="@Model.zipcode" placeholder="Zip code" required="">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <a href="#" class="btn amado-btn w-100">Cập nhật thông tin</a>
+                                <button type="submit" class="btn amado-btn w-100">Cập nhật thông tin</button>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <a href="#" class="btn amado-btn w-100 active">Xóa tài khoản</a>

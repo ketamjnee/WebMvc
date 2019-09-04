@@ -12,6 +12,54 @@ namespace ShopOnlineSystem.Models.DAO
         {
             db = new ShopOnlineEntities();
         }
+        public static ModelView.UserView getUserId(int Id)
+        {
+            db = new ShopOnlineEntities();
+            WebUser user1 = db.WebUsers.Find(Id) as WebUser;
+            ModelView.UserView uv = new ModelView.UserView();
+            try
+            {
+                uv.name = user1.name;
+                uv.uAddress = user1.uAddress;
+                uv.email = user1.email;
+                uv.pwd = user1.pwd;
+                uv.repwd = user1.pwd;
+                uv.phone = user1.phone;
+                uv.zipcode = user1.zipcode;
+                uv.username = user1.username;
+                uv.avatar = user1.avatar;
+                return uv;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return uv;
+        }
+        public static bool updateInfo(ModelView.UserView item)
+        {
+            db = new ShopOnlineEntities();
+            WebUser user1 = db.WebUsers.Find(item) as WebUser;
+            ModelView.UserView uv = new ModelView.UserView();
+            try
+            {
+                uv.name = user1.name;
+                uv.uAddress = user1.uAddress;
+                uv.email = user1.email;
+                uv.pwd = user1.pwd;
+                uv.repwd = user1.pwd;
+                uv.phone = user1.phone;
+                uv.zipcode = user1.zipcode;
+                uv.username = user1.username;
+                uv.avatar = user1.avatar;
+                return uv;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return uv;
+        }
         public static ModelView.UserView loginUser(ModelView.UserView item)
         {
             db = new ShopOnlineEntities();

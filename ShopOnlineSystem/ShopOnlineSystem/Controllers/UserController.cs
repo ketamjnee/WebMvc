@@ -84,7 +84,23 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult UserProfile()
         {
-            return View();
+            if (Session["idUser"] == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["idUser"]);
+                var rs = Repository.getUserId(id);
+                return View(rs);
+            }
+
+        }
+        public ActionResult UpdateUserDAO(UserView item)
+        {
+            //Gáy nào
+            int id = Convert.ToInt32(Session["idUser"]);
+
         }
     }
 }

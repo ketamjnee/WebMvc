@@ -82,7 +82,8 @@
                 else
                 {
                     <h1>Xin Chào @Session["nameUser"]</h1>
-                    <a href="@Url.Action("Logout", "User")" role="button" class="btn amado-btn">Đăng xuất</a>
+                    <a href="@Url.Action("Logout", "User")" role="button" class="btn amado-btn mb-15">Đăng xuất</a>
+                    <a href="@Url.Action("UserProfile", "User")" role="button" class="btn amado-btn active">Thông tin tài khoản</a>
                 }
 
             </div>
