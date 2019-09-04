@@ -13,6 +13,7 @@ namespace ShopOnlineSystem.Controllers
     {
         public ActionResult Index()
         {
+           
             return View();
         }
         #region category

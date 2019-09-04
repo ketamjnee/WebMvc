@@ -12,6 +12,27 @@ namespace ShopOnlineSystem.Models.DAO
         {
             db = new ShopOnlineEntities();
         }
+        public static ModelView.UserView loginUser(ModelView.UserView item)
+        {
+            db = new ShopOnlineEntities();
+            try
+            {
+                WebUser user = db.WebUsers.Where(x => x.email == item.email && x.pwd == item.pwd).FirstOrDefault() as WebUser;
+                if (user.ID > 0)
+                {
+                    item.id = user.ID;
+                    item.userType = user.usertype;
+                    item.name = user.name;
+                    return item;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return item;
+        }
         public static bool addUser(ModelView.UserView item)
         {
             db = new ShopOnlineEntities();
