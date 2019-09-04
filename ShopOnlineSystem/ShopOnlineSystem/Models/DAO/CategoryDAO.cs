@@ -19,8 +19,6 @@ namespace ShopOnlineSystem.Models.DAO
         {
             db = new ShopOnlineEntities();
             var result = from viet in db.Categories where viet.StatusCat == 1 select viet;
-            //List<Category> cate = result;
-               
             return result.ToList();
         }
         public static bool addCate(ModelView.Category item)
@@ -48,7 +46,7 @@ namespace ShopOnlineSystem.Models.DAO
                 return false;
                 throw ex;
             }
-            return false;
+            
         }
         public static bool deleteCate(int id)
         {
@@ -63,8 +61,25 @@ namespace ShopOnlineSystem.Models.DAO
             {
 
                 throw ex;
-            }
-            return false;
+            }            
         }
+
+        #region Giang
+        public static List<ModelView.CategoryView> GetListCateView()
+        {
+            db = new ShopOnlineEntities();
+            var rs = db.Categories.Select(c => new ModelView.CategoryView
+            {
+                ID = c.id,
+                Name = c.name,
+                StatusCat = c.StatusCat,
+                ProductCount = c.Products.Where(d=>d.IDC == c.id && d.StatusProd == 1).Select(d=>d.id).Count(),
+                DeleteStatus = !(
+                db.Products.Any(p => p.IDC == c.id)
+                )
+            }).ToList();
+            return rs;
+        }
+        #endregion
     }
 }

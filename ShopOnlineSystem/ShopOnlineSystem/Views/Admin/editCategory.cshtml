@@ -1,4 +1,4 @@
-﻿@model List<ShopOnlineSystem.Models.ModelData.Category>
+﻿
 @{
     ViewBag.Title = "editCategory";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -17,15 +17,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in (ViewBag.Cat as List<ShopOnlineSystem.Models.ModelView.CategoryView>))
             {
                 stt += 1;
                 <tr>
                     <th scope="row">@stt</th>
-                    <td>@item.name</td>
-                    <td>@item.Products.Where(x => x.StatusProd == 1).Count()</td>
-                    <td>@Html.ActionLink("Sửa","updateCate","Admin", new {id = item.id }, null)
-                        @if (item.Products.Count == 0) {@Html.ActionLink("Xóa","deleteCate","Admin",new { id = item.id},null) }
+                    <td>@item.Name</td>
+                    <td>@item.ProductCount</td>
+                    <td>@Html.ActionLink("Sửa","updateCate","Admin", new {id = item.ID }, null)
+                        @if (item.DeleteStatus) {@Html.ActionLink("Xóa","deleteCate","Admin",new { id = item.ID},null) }
                     </td>
                 </tr>
             }

@@ -26,6 +26,10 @@ namespace ShopOnlineSystem.Models
         {
             return CategoryDAO.updateCate(item);
         }
+        public static List<ModelView.CategoryView> GetListCateView()
+        {
+            return CategoryDAO.GetListCateView();
+        }
         #endregion
         #region product
         public static bool deleteProduct(int id)
