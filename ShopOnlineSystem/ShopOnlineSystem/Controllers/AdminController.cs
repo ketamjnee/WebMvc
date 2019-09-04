@@ -56,7 +56,6 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult deleteCate(int id)
         {
-            var asd = 123;
              Repository.deleteCate(id); 
             return RedirectToAction("editCategory");
         }
