@@ -99,8 +99,9 @@ namespace ShopOnlineSystem.Controllers
         public ActionResult UpdateUserDAO(UserView item)
         {
             //Gáy nào
-            int id = Convert.ToInt32(Session["idUser"]);
-
+            item.id = Convert.ToInt32(Session["idUser"]);
+            var rs = Repository.updateInfo(item);
+            return RedirectToAction("UserProfile");
         }
     }
 }

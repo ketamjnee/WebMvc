@@ -72,6 +72,10 @@ namespace ShopOnlineSystem.Models
         {
             return UserDAO.getUserId(Id);
         }
+        public static bool updateInfo(ModelView.UserView item)
+        {
+            return UserDAO.updateInfo(item);
+        }
         #endregion
     }
 
