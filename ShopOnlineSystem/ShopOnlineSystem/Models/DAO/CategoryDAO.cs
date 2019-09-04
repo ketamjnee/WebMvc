@@ -80,6 +80,18 @@ namespace ShopOnlineSystem.Models.DAO
             }).ToList();
             return rs;
         }
+        public static List<ModelView.Category> GetList()
+        {
+            db = new ShopOnlineEntities();
+            var rs = db.Categories.Where(c=>c.StatusCat == 1).Select(c => new ModelView.Category
+            {
+                ID = c.id,
+                name = c.name,
+                statusCat = c.StatusCat,
+                ProductCount = c.Products.Where(d => d.IDC == c.id && d.StatusProd == 1).Select(d => d.id).Count()
+            }).ToList();
+            return rs;
+        }
         #endregion
     }
 }

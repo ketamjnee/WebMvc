@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShopOnlineSystem.Models;
 using ShopOnlineSystem.Models.ModelView;
-
+using ShopOnlineSystem.Models.DAO;
 namespace ShopOnlineSystem.Controllers
 {
     public class UserController : Controller
@@ -17,6 +17,7 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult Category()
         {
+            ViewBag.Cat = Repository.GetListCat();
             return View();
         }
         public ActionResult Product()
