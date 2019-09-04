@@ -141,6 +141,7 @@
     </Compile>
     <Compile Include="Models\DAO\CategoryDAO.cs" />
     <Compile Include="Models\DAO\ProductDAO.cs" />
+    <Compile Include="Models\DAO\UserDAO.cs" />
     <Compile Include="Models\ModelData\Category.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
@@ -180,6 +181,7 @@
     <Compile Include="Models\ModelView\Category.cs" />
     <Compile Include="Models\ModelView\CategoryView.cs" />
     <Compile Include="Models\ModelView\ProductView.cs" />
+    <Compile Include="Models\ModelView\UserView.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
