@@ -36,6 +36,11 @@ namespace ShopOnlineSystem.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            Session["idUser"] = null;
+            return RedirectToAction("Index");
+        }
         public ActionResult loginDAO(UserView item)
         {
             UserView user = Repository.loginUser(item);
