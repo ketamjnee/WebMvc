@@ -35,6 +35,19 @@ namespace ShopOnlineSystem.Controllers
         {
             return View();
         }
+        public ActionResult loginDAO(UserView item)
+        {
+            UserView user = Repository.loginUser(item);
+            if (user.id > 0)
+            {
+                Session["idUser"] = user.id;
+                Session["Type"] = user.userType;
+               return RedirectToAction("Index");
+            }
+            else { return RedirectToAction("Login");
+            }
+            
+        }
         public ActionResult Register()
         {
             return View();
