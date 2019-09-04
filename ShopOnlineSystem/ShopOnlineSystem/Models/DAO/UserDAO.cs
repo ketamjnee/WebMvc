@@ -22,6 +22,7 @@ namespace ShopOnlineSystem.Models.DAO
                 {
                     item.id = user.ID;
                     item.userType = user.usertype;
+                    item.name = user.name;
                     return item;
                 }
             }
