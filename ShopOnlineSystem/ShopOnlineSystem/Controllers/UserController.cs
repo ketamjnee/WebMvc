@@ -41,7 +41,14 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult registerDAO(UserView item)
         {
-
+            if (item.pwd == item.repwd)
+            {
+                Repository.addUser(item);
+            }
+            else
+            {
+                View("Register");
+            }
             return RedirectToAction("Index");
         }
         public ActionResult ForgotPassword()
