@@ -11,21 +11,17 @@ namespace ShopOnlineSystem.Controllers
 {
     public class AdminController : Controller
     {
-        Repository function;
-        CategoryDAO cate;
-        // GET: Admin
         public ActionResult Index()
         {
             return View();
         }
-                #region category
+        #region category
         public ActionResult category()
         {
             return View();
         }
         public ActionResult addCategory(Category cate1)
         {
-            var a = 123;
             if (Repository.addCate(cate1))
             {
                 Session["addcateS"] = "Add Successfully";
@@ -37,10 +33,10 @@ namespace ShopOnlineSystem.Controllers
             return RedirectToAction("category");
         }
         public ActionResult editCategory()
-        {
-            
-            var result = CategoryDAO.getListCate();
-            return View(result.ToList());
+        {          
+            var result = Repository.GetListCateView();
+            ViewBag.Cat = result;
+            return View();
         }
         public ActionResult updateCate(int id)
         {
@@ -60,6 +56,7 @@ namespace ShopOnlineSystem.Controllers
             return RedirectToAction("editCategory");
         }
         #endregion
+
         #region product
         public ActionResult addProduct()
         {
