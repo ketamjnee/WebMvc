@@ -13,6 +13,7 @@ namespace ShopOnlineSystem.Controllers
         // GET: User
         public ActionResult Index()
         {
+            ViewBag.Prod = Repository.GetListProdTitle(9);
             return View();
         }
         public ActionResult Category()
