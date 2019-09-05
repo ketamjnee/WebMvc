@@ -148,12 +148,12 @@ namespace ShopOnlineSystem.Models.DAO
 
             return false;
         }
-        public static List<ModelView.ProductView> GetListPaging(int pageindex,int pagesize)
+        public static List<ModelView.ProductView> GetListPaging(int pageindex,int pagesize,int idc)
         {
             db = new ShopOnlineEntities();
             var dt = (from a in db.Products
                       from b in db.ProImages
-                      where a.id == b.IDP && b.StatusIMG == 1 && a.StatusProd == 1
+                      where a.id == b.IDP && b.StatusIMG == 1 && a.StatusProd == 1 && a.IDC == idc
                       select new ModelView.ProductView
                       {
                           id = a.id,
