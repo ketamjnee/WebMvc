@@ -27,7 +27,7 @@ namespace ShopOnlineSystem.Models.DAO
                 return false;
                 throw ex;
             }
-            
+
         }
         public static bool updateProduct(ModelView.ProductView item, HttpPostedFileBase picture)
         {
