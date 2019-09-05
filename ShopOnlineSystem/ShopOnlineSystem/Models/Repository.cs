@@ -30,7 +30,12 @@ namespace ShopOnlineSystem.Models
         {
             return CategoryDAO.GetListCateView();
         }
+        public static List<ModelView.Category> GetListCat()
+        {
+            return CategoryDAO.GetList();
+        }
         #endregion
+        
         #region product
         public static bool deleteProduct(int id)
         {
@@ -53,6 +58,7 @@ namespace ShopOnlineSystem.Models
             return ProductDAO.addProduct(item, picture);
         }
         #endregion
+        
         #region user
        public static bool addUser(ModelView.UserView item)
         {
@@ -61,6 +67,14 @@ namespace ShopOnlineSystem.Models
         public static ModelView.UserView loginUser(ModelView.UserView item)
         {
             return UserDAO.loginUser(item);
+        }
+        public static ModelView.UserView getUserId(int Id)
+        {
+            return UserDAO.getUserId(Id);
+        }
+        public static bool updateInfo(ModelView.UserView item)
+        {
+            return UserDAO.updateInfo(item);
         }
         #endregion
     }

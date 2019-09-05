@@ -1,100 +1,68 @@
-﻿
+﻿@model ShopOnlineSystem.Models.ModelView.UserView
 @{
     ViewBag.Title = "Thông tin tài khoản";
-    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
-<head>
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="checkout_details_area mt-50 clearfix">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+                    <div class="cart-title">
+                        <h2>Thông tin tài khoản</h2>
+                    </div>
 
-    <title>Đăng ký</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="@Url.Content("~/content/admin/assets/")vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="@Url.Content("~/content/admin/assets/")css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
-<body class="bg-gradient-primary">
-
-    <div class="container">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Đăng ký Incom</h1>
+                    <form action="@Url.Action("UpdateUserDAO")" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" name="username" class="form-control" id="inputUsername" value="@Model.username" placeholder="Username" required="">
                             </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="inputUsername" placeholder="Username">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="email" class="form-control form-control-user" id="inputEmail" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" id="inputPassword" placeholder="Mật khẩu">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" id="inputPassword2" placeholder="Nhập lại mật khẩu">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="inputName" placeholder="Tên">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="inputAddress" placeholder="Địa chỉ">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="inputPhone" placeholder="Số điện thoại">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="inputZipcode" placeholder="Zip code">
-                                    </div>
-                                </div>
-                                <a href="#" class="btn btn-primary btn-user btn-block">
-                                    Đăng ký
-                                </a>
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="@Url.Action("Login","User")">Đã có tài khoản? Đăng nhập</a>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" name="email" class="form-control" id="inputEmail" value="@Model.email" placeholder="Email" required="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="password" name="pwd" class="form-control" id="inputPassword" value="@Model.pwd" placeholder="Mật khẩu" required="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="password" name="repwd" class="form-control" id="inputPassword2" value="@Model.repwd" placeholder="Nhập lại mật khẩu" required="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" name="name" class="form-control" id="inputName" value="@Model.name" placeholder="Tên" required="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" name="uAddress" class="form-control" id="inputAddress" value="@Model.uAddress" placeholder="Địa chỉ" required="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" name="phone" class="form-control" id="inputPhone" value="@Model.phone" placeholder="Số điện thoại" required="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" name="zipcode" class="form-control" id="inputZipcode" value="@Model.zipcode" placeholder="Zip code" required="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <button type="submit" class="btn amado-btn w-100">Cập nhật thông tin</button>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="#" class="btn amado-btn w-100 active">Xóa tài khoản</a>
                             </div>
                         </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="cart-summary">
+                    <h5>Ảnh đại diện</h5>
+                    <div class="card" style="width:100%;margin:20px 0 20px 0">
+                        <img class="card-img-top" src="@Url.Content("~/content/user/assets/")img/product-img/product1.jpg" alt="image" style="width:100%" />
+                    </div>
+                    <div>
+                        <input type="file" placeholder="Cập nhật ảnh đại diện">
+                    </div>
+                    <div class="cart-btn mt-100">
+                        <a href="#" class="btn amado-btn w-100">Cập nhật avatar</a>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="@Url.Content("~/content/admin/assets/")vendor/jquery/jquery.min.js"></script>
-    <script src="@Url.Content("~/content/admin/assets/")vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="@Url.Content("~/content/admin/assets/")vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="@Url.Content("~/content/admin/assets/")js/sb-admin-2.min.js"></script>
-
-
-
-</body>
-
+</div>

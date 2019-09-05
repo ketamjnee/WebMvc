@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShopOnlineSystem.Models;
 using ShopOnlineSystem.Models.ModelView;
-
+using ShopOnlineSystem.Models.DAO;
 namespace ShopOnlineSystem.Controllers
 {
     public class UserController : Controller
@@ -17,6 +17,7 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult Category()
         {
+            ViewBag.Cat = Repository.GetListCat();
             return View();
         }
         public ActionResult Product()
@@ -34,6 +35,11 @@ namespace ShopOnlineSystem.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+        public ActionResult Logout()
+        {
+            Session["idUser"] = null;
+            return RedirectToAction("Index");
         }
         public ActionResult loginDAO(UserView item)
         {
@@ -78,7 +84,24 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult UserProfile()
         {
-            return View();
+            if (Session["idUser"] == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["idUser"]);
+                var rs = Repository.getUserId(id);
+                return View(rs);
+            }
+
+        }
+        public ActionResult UpdateUserDAO(UserView item)
+        {
+            //Gáy nào
+            item.id = Convert.ToInt32(Session["idUser"]);
+            var rs = Repository.updateInfo(item);
+            return RedirectToAction("UserProfile");
         }
     }
 }

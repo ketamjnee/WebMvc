@@ -78,20 +78,14 @@
             <div class="amado-btn-group mt-30 mb-100">
                 @if (Session["idUser"] == null)
                 {
-                <a href="@Url.Action("Login", "User")" class="btn amado-btn mb-15">Đăng nhập</a>
-                <a href="@Url.Action("Register", "User")" class="btn amado-btn active">Đăng ký</a> }
+                    <a href="@Url.Action("Login", "User")" class="btn amado-btn mb-15">Đăng nhập</a>
+                    <a href="@Url.Action("Register", "User")" class="btn amado-btn active">Đăng ký</a> }
                 else
                 {
-                   <h1>Xin Chào @Session["nameUser"]</h1>
-                   <button type="button"  id="button1" onclick="logout()">Đăng xuất</button>
+                    <h1>Xin Chào @Session["nameUser"]</h1>
+                    <a href="@Url.Action("Logout", "User")" role="button" class="btn amado-btn mb-15">Đăng xuất</a>
+                    <a href="@Url.Action("UserProfile", "User")" role="button" class="btn amado-btn active">Thông tin tài khoản</a>
                 }
-               <script>
-                   $('#something').click(function() {
-                       @Session["idUser"] = null;
-                       location.reload();
-                     });
-
-               </script>
                 
             </div>
             <!-- Cart Menu -->
