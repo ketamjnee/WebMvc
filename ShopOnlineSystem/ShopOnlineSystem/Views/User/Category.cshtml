@@ -37,25 +37,13 @@
                     </div>
                     <!-- Sorting -->
                     <div class="product-sorting d-flex">
-                        <div class="sort-by-date d-flex align-items-center mr-15">
-                            <p>Sort by</p>
-                            <form action="#" method="get">
-                                <select name="select" id="sortBydate" style="display: none;">
-                                    <option value="value">Date</option>
-                                    <option value="value">Newest</option>
-                                    <option value="value">Popular</option>
-                                </select><div class="nice-select" tabindex="0"><span class="current">Date</span><ul class="list"><li data-value="value" class="option selected">Date</li><li data-value="value" class="option">Newest</li><li data-value="value" class="option">Popular</li></ul></div>
-                            </form>
-                        </div>
                         <div class="view-product d-flex align-items-center">
                             <p>View</p>
-                            <form action="#" method="get">
-                                <select name="select" id="viewProduct" style="display: none;">
-                                    <option value="value">12</option>
-                                    <option value="value">24</option>
-                                    <option value="value">48</option>
-                                    <option value="value">96</option>
-                                </select><div class="nice-select" tabindex="0"><span class="current">12</span><ul class="list"><li data-value="value" class="option selected">12</li><li data-value="value" class="option">24</li><li data-value="value" class="option">48</li><li data-value="value" class="option">96</li></ul></div>
+                            <form id="ItemView" action="@Url.Action("LoadView")" method="get">
+                                <select name="pagesize" id="viewProduct" style="display: none;">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                </select><div class="nice-select" tabindex="0"><span class="current">10</span><ul class="list"><li data-value="value" class="option selected">10</li><li data-value="value" class="option">20</li></ul></div>
                             </form>
                         </div>
                     </div>

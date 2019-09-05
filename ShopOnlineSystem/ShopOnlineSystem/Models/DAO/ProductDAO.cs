@@ -148,6 +148,26 @@ namespace ShopOnlineSystem.Models.DAO
 
             return false;
         }
+        public static List<ModelView.ProductView> GetListPaging(int pageindex,int pagesize)
+        {
+            db = new ShopOnlineEntities();
+            var dt = (from a in db.Products
+                      from b in db.ProImages
+                      where a.id == b.IDP && b.StatusIMG == 1 && a.StatusProd == 1
+                      select new ModelView.ProductView
+                      {
+                          id = a.id,
+                          IDC = a.IDC ?? 0,
+                          CateName = a.Category.name,
+                          name = a.name,
+                          description = a.description,
+                          picture = b.Name,
+                          price = a.price,
+                          StatusProd = a.StatusProd,
+                          stock = a.stock
+                      }).OrderByDescending(a => a.id).Skip(pageindex*pagesize).Take(pagesize).ToList();
+            return dt;
+        }
         public static List<ModelView.ProductView> getListTitle(int pagesize)
         {
             db = new ShopOnlineEntities();
