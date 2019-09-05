@@ -13,6 +13,7 @@ namespace ShopOnlineSystem.Controllers
         // GET: User
         public ActionResult Index()
         {
+            ViewBag.Prod = Repository.GetListProdTitle(9);
             return View();
         }
         public ActionResult Category()
@@ -68,15 +69,23 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult registerDAO(UserView item)
         {
-            if (item.pwd == item.repwd)
+            if (Repository.checkMail(item.email))
             {
-                Repository.addUser(item);
+                 return RedirectToAction("Register");
             }
             else
             {
-                View("Register");
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            //if (item.pwd == item.repwd)
+            //{
+            //    Repository.addUser(item);
+            //}
+            //else
+            //{
+            //    View("Register");
+            //}
+            //return RedirectToAction("Index");
         }
         public ActionResult ForgotPassword()
         {
@@ -98,7 +107,7 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult UpdateUserDAO(UserView item)
         {
-            //Gáy nào
+            //Gáy nàoD:\WFC Demo\GitHub\ketamjnee\WebMvc\ShopOnlineSystem\ShopOnlineSystem\Models\DAO\ProductDAO.cs
             item.id = Convert.ToInt32(Session["idUser"]);
             var rs = Repository.updateInfo(item);
             return RedirectToAction("UserProfile");

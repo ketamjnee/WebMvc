@@ -12,6 +12,28 @@ namespace ShopOnlineSystem.Models.DAO
         {
             db = new ShopOnlineEntities();
         }
+        public static bool checkMail(string emailWeb)
+        {
+            db = new ShopOnlineEntities();
+            try
+            {
+                var a = db.WebUsers.Where(x => x.email == emailWeb).Count();
+                if (a > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return false;
+        }
         public static ModelView.UserView getUserId(int Id)
         {
             db = new ShopOnlineEntities();
@@ -64,7 +86,7 @@ namespace ShopOnlineSystem.Models.DAO
             {
                 WebUser user = db.WebUsers.Where(x => x.email == item.email && x.pwd == item.pwd).FirstOrDefault() as WebUser;
                 if (user.ID > 0)
-                {
+                { 
                     item.id = user.ID;
                     item.userType = user.usertype;
                     item.name = user.name;
