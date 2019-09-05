@@ -2097,6 +2097,8 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
+    <Content Include="Views\User\Order.cshtml" />
+    <Content Include="Views\User\Feedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

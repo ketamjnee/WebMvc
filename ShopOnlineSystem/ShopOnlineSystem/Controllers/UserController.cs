@@ -103,5 +103,13 @@ namespace ShopOnlineSystem.Controllers
             var rs = Repository.updateInfo(item);
             return RedirectToAction("UserProfile");
         }
+        public ActionResult Order()
+        {
+            return View();
+        }
+        public ActionResult Feedback()
+        {
+            return View();
+        }
     }
 }
