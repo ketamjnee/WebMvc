@@ -1792,6 +1792,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-3.4.1.min.js" />
     <Content Include="Content\user\assets\css\animate.css" />
     <Content Include="Content\user\assets\css\bootstrap.min.css" />
     <Content Include="Content\user\assets\css\classy-nav.min.css" />
