@@ -181,6 +181,7 @@
     <Compile Include="Models\ModelView\Category.cs" />
     <Compile Include="Models\ModelView\CategoryView.cs" />
     <Compile Include="Models\ModelView\ProductView.cs" />
+    <Compile Include="Models\ModelView\PView.cs" />
     <Compile Include="Models\ModelView\UserView.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
