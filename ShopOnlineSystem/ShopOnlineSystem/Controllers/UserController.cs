@@ -69,15 +69,16 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult registerDAO(UserView item)
         {
-            if (Repository.
-                checkMail(item.email))
+            if (Repository.checkMail(item.email))
             {
                  return RedirectToAction("Register");
             }
-            else { return RedirectToAction("Index"); }
+            else
+            {
+                return RedirectToAction("Index");
+            }
             //if (item.pwd == item.repwd)
             //{
-
             //    Repository.addUser(item);
             //}
             //else
@@ -106,7 +107,7 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult UpdateUserDAO(UserView item)
         {
-            //Gáy nào
+            //Gáy nàoD:\WFC Demo\GitHub\ketamjnee\WebMvc\ShopOnlineSystem\ShopOnlineSystem\Models\DAO\ProductDAO.cs
             item.id = Convert.ToInt32(Session["idUser"]);
             var rs = Repository.updateInfo(item);
             return RedirectToAction("UserProfile");
