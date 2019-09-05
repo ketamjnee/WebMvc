@@ -58,8 +58,12 @@ namespace ShopOnlineSystem.Models
             return ProductDAO.addProduct(item, picture);
         }
         #endregion
-        
+
         #region user
+        public static bool checkMail(string emailWeb)
+        {
+            return UserDAO.checkMail(emailWeb);
+        }
        public static bool addUser(ModelView.UserView item)
         {
             return UserDAO.addUser(item);
