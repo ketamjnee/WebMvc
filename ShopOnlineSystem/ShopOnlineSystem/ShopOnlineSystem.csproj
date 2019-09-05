@@ -2095,6 +2095,7 @@
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\Order.cshtml" />
     <Content Include="Views\User\Feedback.cshtml" />
+    <Content Include="Views\Admin\userSetting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -102,5 +102,11 @@ namespace ShopOnlineSystem.Controllers
             return RedirectToAction("editProduct");
         }
         #endregion
+        #region user
+        public ActionResult userSetting()
+        {
+            return View();
+        }
+        #endregion
     }
 }
