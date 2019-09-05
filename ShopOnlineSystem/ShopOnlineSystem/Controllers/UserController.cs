@@ -13,6 +13,7 @@ namespace ShopOnlineSystem.Controllers
         // GET: User
         public ActionResult Index()
         {
+            ViewBag.Prod = Repository.GetListProdTitle(9);
             return View();
         }
         public ActionResult Category()
@@ -109,6 +110,14 @@ namespace ShopOnlineSystem.Controllers
             item.id = Convert.ToInt32(Session["idUser"]);
             var rs = Repository.updateInfo(item);
             return RedirectToAction("UserProfile");
+        }
+        public ActionResult Order()
+        {
+            return View();
+        }
+        public ActionResult Feedback()
+        {
+            return View();
         }
     }
 }
