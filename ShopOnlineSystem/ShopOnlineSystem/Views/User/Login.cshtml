@@ -46,10 +46,10 @@
                                     </div>
                                     <form class="user" action="@Url.Action("loginDAO")" method="post">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user" id="inputEmail" aria-describedby="emailHelp" placeholder="Email">
+                                            <input type="email" name="email" class="form-control form-control-user" id="inputEmail" placeholder="Email" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="pwd" class="form-control form-control-user" id="inputPassword" placeholder="Password">
+                                            <input type="password" name="pwd" class="form-control form-control-user" id="inputPassword" placeholder="Password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -57,9 +57,16 @@
                                                 <label class="custom-control-label" for="customCheck">Ghi nhớ đăng nhập</label>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block">Đăng nhập</button>
+                                        <div class="small text-center text-danger">
+                                            <p id="txtValidateUsername"></p>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Đăng nhập</button>
                                     </form>
                                     <hr>
+                                    <!--Validate field-->
+                                    <div class="small text-center text-danger">
+                                        <p class="mt-1" id="txtValidateUsername">caccac</p>
+                                    </div>
                                     <div class="text-center">
                                         <a class="small" href="@Url.Action("ForgotPassword", "User")">Quên mật khẩu?</a>
                                     </div>

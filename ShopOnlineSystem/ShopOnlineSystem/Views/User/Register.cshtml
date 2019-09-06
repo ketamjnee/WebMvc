@@ -53,39 +53,44 @@
                             <form class="user" name="myForm" action="@Url.Action("registerDAO")" method="post" onsubmit="return validateForm()">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="username" class="form-control form-control-user" id="inputUsername" placeholder="Username">
+                                        <input type="text" name="username" class="form-control form-control-user" id="inputUsername" placeholder="Username" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="email" name="email" class="form-control form-control-user" id="inputEmail" placeholder="Email">
+                                        <input type="email" name="email" class="form-control form-control-user" id="inputEmail" placeholder="Email" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" name="pwd" class="form-control form-control-user" id="inputPassword" placeholder="Mật khẩu">
+                                        <input type="password" name="pwd" class="form-control form-control-user" id="inputPassword" placeholder="Mật khẩu" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" name="repwd" class="form-control form-control-user" id="inputPassword2" placeholder="Nhập lại mật khẩu">
+                                        <input type="password" name="repwd" class="form-control form-control-user" id="inputPassword2" placeholder="Nhập lại mật khẩu" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="name" class="form-control form-control-user" id="inputName" placeholder="Tên">
+                                        <input type="text" name="name" class="form-control form-control-user" id="inputName" placeholder="Tên" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="uAddress" class="form-control form-control-user" id="inputAddress" placeholder="Địa chỉ">
+                                        <input type="text" name="uAddress" class="form-control form-control-user" id="inputAddress" placeholder="Địa chỉ" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="phone" class="form-control form-control-user" id="inputPhone" placeholder="Số điện thoại">
+                                        <input type="text" name="phone" class="form-control form-control-user" id="inputPhone" placeholder="Số điện thoại" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="zipcode" class="form-control form-control-user" id="inputZipcode" placeholder="Zip code">
+                                        <input type="text" name="zipcode" class="form-control form-control-user" id="inputZipcode" placeholder="Zip code" required>
                                     </div>
+                                </div>
+                                <!--Validate field-->
+                                <div class="small text-center text-danger">
+                                    <p id="txtValidateEmail"> </p>
                                 </div>
                                 <button type="submit" class=" btn btn-primary btn-user btn-block">Đăng ký</button>
                             </form>
                             <hr>
+                            
                             <div class="text-center">
                                 <h1 id="test1">@ViewBag.FalseMail </h1>
                                 <a class="small" href="@Url.Action("Login","User")">Đã có tài khoản? Đăng nhập</a>
@@ -107,7 +112,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="@Url.Content("~/content/admin/assets/")js/sb-admin-2.min.js"></script>
-
+    <script src="@Url.Content("~/content/admin/assets/")js/validation.js"></script>
 
 
 </body>
