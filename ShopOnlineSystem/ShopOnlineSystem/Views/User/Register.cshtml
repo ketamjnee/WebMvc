@@ -84,9 +84,17 @@
                                     </div>
                                 </div>
                                 <!--Validate field-->
-                                <div class="small text-center text-danger">
-                                    <p id="txtValidateEmail"> </p>
+                                @{
+                                    if (Session["Error"] != null)
+                                    {
+                                    <div class="small text-center text-danger">
+                                    <p id="txtValidateEmail">@Session["Error"].ToString() </p>
                                 </div>
+                                    }else
+                                    {
+
+                                    }
+                                    }
                                 <button type="submit" class=" btn btn-primary btn-user btn-block">Đăng ký</button>
                             </form>
                             <hr>
@@ -114,6 +122,8 @@
     <script src="@Url.Content("~/content/admin/assets/")js/sb-admin-2.min.js"></script>
     <script src="@Url.Content("~/content/admin/assets/")js/validation.js"></script>
 
-
+    @{
+        Session["Error"] = null;
+     }
 </body>
 
