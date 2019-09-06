@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace ShopOnlineSystem.Models.DAO
+
 {
     public class ProductDAO
     {
@@ -79,10 +80,10 @@ namespace ShopOnlineSystem.Models.DAO
              lambda
              */
             List<ModelView.ProductView> q = db.Products.Where(d => d.StatusProd == 1).Select(d => new ModelView.ProductView
-            {
-                id = d.id,
-                picture = d.ProImages.Where(f => f.StatusIMG == 1).FirstOrDefault().Name
-            }).ToList();
+                {
+                    id = d.id,
+                    picture = d.ProImages.Where(f => f.StatusIMG == 1).FirstOrDefault().Name
+                }).ToList();
             /*
              select p.*,pi.name
              from product p, proImage pi
@@ -100,18 +101,18 @@ namespace ShopOnlineSystem.Models.DAO
              
              */
             IQueryable<ModelView.ProductView> result = from prod in db.Products
-                                                       where prod.StatusProd == 1
-                                                       select new ModelView.ProductView
-                                                       {
-                                                           id = prod.id,
-                                                           name = prod.name,
-                                                           description = prod.description,
-                                                           IDC = prod.IDC ?? 0,
-                                                           price = prod.price,
-                                                           stock = prod.stock,
-                                                           picture = (prod.ProImages.Where(d => d.StatusIMG == 1 && d.IDP == prod.id).FirstOrDefault()).Name,
-                                                           CateName = prod.Category.name
-                                                       };
+                    where prod.StatusProd == 1
+                    select new ModelView.ProductView
+                    {
+                        id = prod.id,
+                        name = prod.name,
+                        description = prod.description,
+                        IDC = prod.IDC ?? 0,
+                        price = prod.price,
+                        stock = prod.stock,
+                        picture = (prod.ProImages.Where(d => d.StatusIMG == 1 && d.IDP == prod.id).FirstOrDefault()).Name,
+                        CateName = prod.Category.name
+                    };
             return result.ToList();
         }
         public static bool addProduct(ModelView.ProductView item, HttpPostedFileBase picture)
@@ -148,24 +149,24 @@ namespace ShopOnlineSystem.Models.DAO
 
             return false;
         }
-        public static List<ModelView.ProductView> GetListPaging(int pageindex,int pagesize,int idc)
+        public static List<ModelView.ProductView> GetListPaging(int pageindex, int pagesize, int idc)
         {
             db = new ShopOnlineEntities();
-            var dt = (from a in db.Products
-                      from b in db.ProImages
-                      where a.id == b.IDP && b.StatusIMG == 1 && a.StatusProd == 1 && a.IDC == idc
-                      select new ModelView.ProductView
-                      {
-                          id = a.id,
-                          IDC = a.IDC ?? 0,
-                          CateName = a.Category.name,
-                          name = a.name,
-                          description = a.description,
-                          picture = b.Name,
-                          price = a.price,
-                          StatusProd = a.StatusProd,
-                          stock = a.stock
-                      }).OrderByDescending(a => a.id).Skip(pageindex*pagesize).Take(pagesize).ToList();
+            List<ModelView.ProductView> dt = (from a in db.Products
+                                              from b in db.ProImages
+                                              where a.id == b.IDP && b.StatusIMG == 1 && a.StatusProd == 1 && a.IDC == idc
+                                              select new ModelView.ProductView
+                                              {
+                                                  id = a.id,
+                                                  IDC = a.IDC ?? 0,
+                                                  CateName = a.Category.name,
+                                                  name = a.name,
+                                                  description = a.description,
+                                                  picture = b.Name,
+                                                  price = a.price,
+                                                  StatusProd = a.StatusProd,
+                                                  stock = a.stock
+                                              }).OrderByDescending(a => a.id).Skip(pageindex * pagesize).Take(pagesize).ToList();
             return dt;
         }
         public static List<ModelView.ProductView> getListTitle(int pagesize)
@@ -185,20 +186,21 @@ namespace ShopOnlineSystem.Models.DAO
             //    StatusProd = p.StatusProd,
             //    stock = p.stock
             //}).ToList();
-            var dt = (from a in db.Products
-                     from b in db.ProImages
-                     where a.id == b.IDP && b.StatusIMG==1 && a.StatusProd == 1
-                     select new ModelView.ProductView {
-                         id = a.id,
-                         IDC = a.IDC ?? 0,
-                         CateName = a.Category.name,
-                         name = a.name,
-                         description = a.description,
-                         picture = b.Name,
-                         price = a.price,
-                         StatusProd = a.StatusProd,
-                         stock = a.stock
-                     }).OrderByDescending(a=>a.id).Take(pagesize).ToList();
+            List<ModelView.ProductView> dt = (from a in db.Products
+                                              from b in db.ProImages
+                                              where a.id == b.IDP && b.StatusIMG == 1 && a.StatusProd == 1
+                                              select new ModelView.ProductView
+                                              {
+                                                  id = a.id,
+                                                  IDC = a.IDC ?? 0,
+                                                  CateName = a.Category.name,
+                                                  name = a.name,
+                                                  description = a.description,
+                                                  picture = b.Name,
+                                                  price = a.price,
+                                                  StatusProd = a.StatusProd,
+                                                  stock = a.stock
+                                              }).OrderByDescending(a => a.id).Take(pagesize).ToList();
             return dt;
         }
     }
