@@ -57,15 +57,24 @@
                                                 <label class="custom-control-label" for="customCheck">Ghi nhớ đăng nhập</label>
                                             </div>
                                         </div>
-                                        <div class="small text-center text-danger">
-                                            <p id="txtValidateUsername"></p>
-                                        </div>
+                                        @{
+                                            if (Session["ErrorLogin"] != null)
+                                            {
+                                            <div class="small text-center text-danger">
+                                                <p id="txtValidateUsername">@Session["ErrorLogin"].ToString()</p>
+                                            </div>
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                            }
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Đăng nhập</button>
                                     </form>
                                     <hr>
                                     <!--Validate field-->
                                     <div class="small text-center text-danger">
-                                        <p class="mt-1" id="txtValidateUsername">caccac</p>
+                                        <p class="mt-1" id="txtValidateUsername"></p>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="@Url.Action("ForgotPassword", "User")">Quên mật khẩu?</a>
@@ -97,5 +106,5 @@
 
 
 
-
+    @{Session["ErrorLogin"] = null;}
 </body>

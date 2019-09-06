@@ -59,7 +59,9 @@ namespace ShopOnlineSystem.Controllers
                 }
 
             }
-            else { return RedirectToAction("Login");
+            else {
+                Session["ErrorLogin"] = "Email hoặc mật khẩu không đúng"; 
+                return RedirectToAction("Login");
             }
 
         }
