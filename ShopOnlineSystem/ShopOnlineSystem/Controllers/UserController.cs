@@ -21,8 +21,14 @@ namespace ShopOnlineSystem.Controllers
             ViewBag.Cat = Repository.GetListCat();
             return View();
         }
-        public ActionResult Product()
+        public ActionResult Product(string id)
         {
+            if(id == null)
+            {
+                RedirectToAction("Index");
+            }
+            ProductView pv = Repository.GetProdByID(Convert.ToInt32(id));
+            ViewBag.Prod = pv;
             return View();
         }
         public ActionResult Cart()
@@ -49,8 +55,10 @@ namespace ShopOnlineSystem.Controllers
             {
                 Session["idUser"] = user.id;
                 Session["nameUser"] = user.name;
+                Session["userType"] = "User";
                 if (user.userType == 1)
                 {
+                    Session["userType"] = "Admin";
                     return RedirectToAction("Index", "Admin", new { id = user.id });
                 }
                 else
