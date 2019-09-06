@@ -39,14 +39,17 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <a href="@Url.Action("Index", "User")" class="btn-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Trở về trang chủ">×</a>
+                                        </button>
                                         <h1 class="h4 text-gray-900 mb-4">Đăng nhập Incom</h1>
                                     </div>
                                     <form class="user" action="@Url.Action("loginDAO")" method="post">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user" id="inputEmail" aria-describedby="emailHelp" placeholder="Email">
+                                            <input type="email" name="email" class="form-control form-control-user" id="inputEmail" placeholder="Email" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="pwd" class="form-control form-control-user" id="inputPassword" placeholder="Password">
+                                            <input type="password" name="pwd" class="form-control form-control-user" id="inputPassword" placeholder="Password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -54,9 +57,25 @@
                                                 <label class="custom-control-label" for="customCheck">Ghi nhớ đăng nhập</label>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block">Đăng nhập</button>
+                                        @{
+                                            if (Session["ErrorLogin"] != null)
+                                            {
+                                            <div class="small text-center text-danger">
+                                                <p id="txtValidateUsername">@Session["ErrorLogin"].ToString()</p>
+                                            </div>
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                            }
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Đăng nhập</button>
                                     </form>
                                     <hr>
+                                    <!--Validate field-->
+                                    <div class="small text-center text-danger">
+                                        <p class="mt-1" id="txtValidateUsername"></p>
+                                    </div>
                                     <div class="text-center">
                                         <a class="small" href="@Url.Action("ForgotPassword", "User")">Quên mật khẩu?</a>
                                     </div>
@@ -87,5 +106,5 @@
 
 
 
-
+    @{Session["ErrorLogin"] = null;}
 </body>

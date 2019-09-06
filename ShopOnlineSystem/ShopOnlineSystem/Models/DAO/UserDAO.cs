@@ -95,7 +95,7 @@ namespace ShopOnlineSystem.Models.DAO
             }
             catch (Exception ex)
             {
-
+                return item;
                 throw ex;
             }
             return item;

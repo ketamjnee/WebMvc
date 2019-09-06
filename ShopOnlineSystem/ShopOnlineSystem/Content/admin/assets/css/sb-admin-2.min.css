@@ -2656,7 +2656,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 .btn-primary {
     color: #fff;
     background-color: #fbb710;
-    border-color: #fbb710
+    border-color: #fbb710;
 }
 
     .btn-primary:hover {
@@ -11785,7 +11785,7 @@ a:focus {
 }
 
 .bg-register-image {
-    background: url(https://source.unsplash.com/Mv9hjnEUHR4/600x800);
+    background: url(https://source.unsplash.com/oWTW-jNGl9I/600x800);
     background-position: center;
     background-size: cover
 }
