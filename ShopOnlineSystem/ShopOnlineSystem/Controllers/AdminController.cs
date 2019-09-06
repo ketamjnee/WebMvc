@@ -13,8 +13,15 @@ namespace ShopOnlineSystem.Controllers
     {
         public ActionResult Index()
         {
-           
-            return View();
+            if ((string)Session["userType"].ToString() == "Admin")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "User");
+            }  
+            
         }
         #region category
         public ActionResult category()
