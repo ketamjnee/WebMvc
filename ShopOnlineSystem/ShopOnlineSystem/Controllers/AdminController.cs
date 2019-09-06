@@ -108,5 +108,15 @@ namespace ShopOnlineSystem.Controllers
             return View();
         }
         #endregion
+        #region Tương tác
+        public ActionResult OrderAdmin()
+        {
+            return View();
+        }
+        public ActionResult FeedbackAdmin()
+        {
+            return View();
+        }
+        #endregion
     }
 }
