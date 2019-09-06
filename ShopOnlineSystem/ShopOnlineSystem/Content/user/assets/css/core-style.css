@@ -14,7 +14,7 @@
   padding: 0; }
 
 body {
-    font-family: Tahoma;
+    font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: 16px;
 }
 
@@ -952,7 +952,8 @@ img {
     width: 100%;
     height: 100%;
     position: relative;
-    z-index: 10; }
+    z-index: 10;
+  }
     .single-products-catagory a::after {
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms;
@@ -967,7 +968,9 @@ img {
       opacity: 0;
       visibility: visible; }
     .single-products-catagory a img {
-      width: 100%; }
+      width: 100%; 
+      opacity: 0.8;
+    }
   .single-products-catagory .hover-content {
     position: absolute;
     top: 40px;

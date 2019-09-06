@@ -5,21 +5,21 @@
 }
 <div class="row">
     <div class="col-12 col-lg-6">
-        <h2>Thêm sản phẩm</h2>
+        <h2 class="mb-3">Thêm sản phẩm</h2>
         <form action="@Url.Action("addProductDAO")" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Tên Sản Phẩm</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="">
+                <input type="text" class="form-control" id="name" name="name" placeholder="" required>
 
             </div>
             <div class="form-group">
                 <label for="price">Giá Sản Phẩm</label>
-                <input type="text" class="form-control" id="price" name="price" placeholder="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                <input type="text" class="form-control" id="price" name="price" placeholder="" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
 
             </div>
             <div class="form-group">
                 <label for="stock">Số Lượng Sản Phẩm</label>
-                <input type="text" class="form-control" id="stock" name="stock" placeholder="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                <input type="text" class="form-control" id="stock" name="stock" placeholder="" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
 
             </div>
             <div class="form-group">
@@ -31,11 +31,11 @@
             </div>
             <div class="form-group">
                 <label for="picture">Ảnh Đại Diện</label>
-                <input type="file" class="form-control" id="picture" name="picture" placeholder="">
+                <input type="file" class="form-control" id="picture" name="picture" placeholder="" required>
 
             </div>
             <label for="category">Danh Mục Sản Phẩm</label>
-            <select class="form-control" id="category" name="IDC">
+            <select class="form-control" id="category" name="IDC" required>
                 @foreach (var item in Model)
                 {
                     <option value="@item.id"> @item.name</option>
