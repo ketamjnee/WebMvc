@@ -5,7 +5,11 @@
     }
     else
     {
-       Response.Redirect
+        Response.Redirect("~/user/index");
+    }
+    if (Session["idUser"] == null)
+    {
+        Response.Redirect("~/user/index");
     }
 }
 

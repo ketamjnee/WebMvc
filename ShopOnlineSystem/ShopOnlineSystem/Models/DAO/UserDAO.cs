@@ -75,9 +75,10 @@ namespace ShopOnlineSystem.Models.DAO
             }
             catch (Exception ex)
             {
+                return false;
                 throw ex;
             }
-            return false;
+            
         }
         public static ModelView.UserView loginUser(ModelView.UserView item)
         {
