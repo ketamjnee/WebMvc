@@ -82,7 +82,7 @@
                     <a href="@Url.Action("Register", "User")" class="btn amado-btn active">Đăng ký</a> }
                 else
                 {
-                    <h1>Xin Chào @Session["nameUser"]</h1>
+                    <h3 class="mb-15">Xin chào @Session["nameUser"],</h3>
                     <a href="@Url.Action("Logout", "User")" role="button" class="btn amado-btn mb-15">Đăng xuất</a>
                     <a href="@Url.Action("UserProfile", "User")" role="button" class="btn amado-btn mb-15 active">Tài khoản</a>
                     <a href="@Url.Action("Order", "User")" role="button" class="btn amado-btn mb-15">Đơn hàng</a>

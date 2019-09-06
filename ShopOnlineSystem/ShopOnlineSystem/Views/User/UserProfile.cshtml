@@ -16,28 +16,28 @@
                     <form action="@Url.Action("UpdateUserDAO")" method="post">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <input type="text" name="username" class="form-control" id="inputUsername" value="@Model.username" placeholder="Username" required="">
+                                <input type="text" name="username" class="form-control" id="inputUsername" value="@Model.username" placeholder="Username" disabled>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="email" name="email" class="form-control" id="inputEmail" value="@Model.email" placeholder="Email" required="">
+                                <input type="email" name="email" class="form-control" id="inputEmail" value="@Model.email" placeholder="Email" disabled>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="password" name="pwd" class="form-control" id="inputPassword" value="@Model.pwd" placeholder="Mật khẩu" required="">
+                                <input type="password" name="pwd" class="form-control" id="inputPassword" value="@Model.pwd" placeholder="Mật khẩu" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="password" name="repwd" class="form-control" id="inputPassword2" value="@Model.repwd" placeholder="Nhập lại mật khẩu" required="">
+                                <input type="password" name="repwd" class="form-control" id="inputPassword2" value="@Model.repwd" placeholder="Nhập lại mật khẩu" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" name="name" class="form-control" id="inputName" value="@Model.name" placeholder="Tên" required="">
+                                <input type="text" name="name" class="form-control" id="inputName" value="@Model.name" placeholder="Tên" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" name="uAddress" class="form-control" id="inputAddress" value="@Model.uAddress" placeholder="Địa chỉ" required="">
+                                <input type="text" name="uAddress" class="form-control" id="inputAddress" value="@Model.uAddress" placeholder="Địa chỉ" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" name="phone" class="form-control" id="inputPhone" value="@Model.phone" placeholder="Số điện thoại" required="">
+                                <input type="text" name="phone" class="form-control" id="inputPhone" value="@Model.phone" placeholder="Số điện thoại" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" name="zipcode" class="form-control" id="inputZipcode" value="@Model.zipcode" placeholder="Zip code" required="">
+                                <input type="text" name="zipcode" class="form-control" id="inputZipcode" value="@Model.zipcode" placeholder="Zip code" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <button type="submit" class="btn amado-btn w-100">Cập nhật thông tin</button>
@@ -52,3 +52,5 @@
         </div>
     </div>
 </div>
+<!-- Custom scripts for all pages-->
+<script src="@Url.Content("~/content/admin/assets/")js/validation.js"></script>
