@@ -126,5 +126,25 @@ namespace ShopOnlineSystem.Models.DAO
             }
             return false;
         }
+        public static bool addFeedBack(ModelView.CommentView item)
+        {
+            db = new ShopOnlineEntities();
+            try
+            {
+                Comment cm = new Comment
+                {
+                    Comment1 = item.comment,
+                    email = item.email,
+                    typeComment = 0,
+                    typeFB = item.typeFB
+                };
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+        }
     }
 }

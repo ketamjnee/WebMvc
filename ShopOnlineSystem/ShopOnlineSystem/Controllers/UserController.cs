@@ -122,7 +122,17 @@ namespace ShopOnlineSystem.Controllers
         {
             //Gáy nàoD:\WFC Demo\GitHub\ketamjnee\WebMvc\ShopOnlineSystem\ShopOnlineSystem\Models\DAO\ProductDAO.cs
             item.id = Convert.ToInt32(Session["idUser"]);
-            var rs = Repository.updateInfo(item);
+            if (Repository.updateInfo(item))
+            {
+                Session["nameUser"] = item.name;
+                Session["Success"] = "Cập nhật thành công"; 
+                return RedirectToAction("UserProfile");
+            }
+            else
+            {
+                Session["Error"] = "Cập nhật thất bại";
+                return RedirectToAction("UserProfile");
+            }
             return RedirectToAction("UserProfile");
         }
         public ActionResult Order()
@@ -132,6 +142,11 @@ namespace ShopOnlineSystem.Controllers
         public ActionResult Feedback()
         {
             return View();
+        }
+        public ActionResult feddBackDAO(CommentView item)
+        {
+
+            return RedirectToAction("FeedBack");
         }
     }
 }

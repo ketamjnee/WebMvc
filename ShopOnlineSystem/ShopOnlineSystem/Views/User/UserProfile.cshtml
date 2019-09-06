@@ -41,11 +41,32 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
+
                                 <button type="submit" class="btn amado-btn w-100">Cập nhật thông tin</button>
+                                @{
+                                    if (Session["Error"] != null)
+                                    {
+                                        <div class="small text-center text-danger">
+                                            <p id="txtValidateUsername">@Session["Error"].ToString()</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        if (Session["Success"] != null)
+                                        {
+                                            <div class="small text-center text-success">
+                                                <p id="txtValidateUsername">@Session["Success"].ToString()</p>
+                                            </div>
+                                        }
+                                        else
+                                        { }
+                                    }
+                                }
                             </div>
                             <div class="col-md-6 mb-3">
                                 <a href="#" class="btn amado-btn w-100 active">Xóa tài khoản</a>
                             </div>
+
                         </div>
                     </form>
                 </div>
@@ -53,5 +74,9 @@
         </div>
     </div>
 </div>
+@{ 
+    Session["Success"] = null;
+    Session["Error"] = null;
+}
 <!-- Custom scripts for all pages-->
 <script src="@Url.Content("~/content/admin/assets/")js/validation.js"></script>

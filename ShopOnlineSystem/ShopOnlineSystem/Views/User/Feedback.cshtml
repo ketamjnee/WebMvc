@@ -13,14 +13,14 @@
                         <h2>Phản hồi</h2>
                     </div>
 
-                    <form action="#" method="post">
+                    <form action="@Url.Action("feddBackDAO")" method="post">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <input type="email" class="form-control" id="email" placeholder="Email" value="" disabled>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control mb-3" id="product" placeholder="Tên sản phẩm" value="">
+                                <input type="text" name="typeFB" class="form-control mb-3" id="product" placeholder="Kiểu khiếu nại" value="">
                             </div>
                             <div class="col-12 mb-3">
                                 <textarea name="comment" class="form-control w-100" id="comment" cols="30" rows="10" placeholder="Để bình luận ở đây..."></textarea>

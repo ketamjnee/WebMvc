@@ -11,7 +11,8 @@
         <EntityTypeShape EntityType="ShopOnlineModel.OderDetail" Width="1.5" PointX="5.25" PointY="2.5" />
         <EntityTypeShape EntityType="ShopOnlineModel.Product" Width="1.5" PointX="3" PointY="2.125" />
         <EntityTypeShape EntityType="ShopOnlineModel.ProImage" Width="1.5" PointX="5.25" PointY="5.75" />
-        <EntityTypeShape EntityType="ShopOnlineModel.WebUser" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ShopOnlineModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ShopOnlineModel.WebUser" Width="1.5" PointX="7.75" PointY="6.75" />
         <AssociationConnector Association="ShopOnlineModel.FK__Product__IDC__2C3393D0" />
         <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDO__2A4B4B5E" />
         <AssociationConnector Association="ShopOnlineModel.FK__OderDetail__IDP__2B3F6F97" />

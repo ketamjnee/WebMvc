@@ -169,11 +169,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShopOnlineSystem.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelData\sysdiagram.cs">
+      <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelData\WebUser.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelView\Category.cs" />
     <Compile Include="Models\ModelView\CategoryView.cs" />
+    <Compile Include="Models\ModelView\CommentView.cs" />
     <Compile Include="Models\ModelView\ProductView.cs" />
     <Compile Include="Models\ModelView\PView.cs" />
     <Compile Include="Models\ModelView\UserView.cs" />
