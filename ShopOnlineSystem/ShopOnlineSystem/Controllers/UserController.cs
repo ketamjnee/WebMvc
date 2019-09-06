@@ -51,41 +51,45 @@ namespace ShopOnlineSystem.Controllers
                 Session["nameUser"] = user.name;
                 if (user.userType == 1)
                 {
-                    return RedirectToAction("Index", "Admin", new {id = user.id });
+                    return RedirectToAction("Index", "Admin", new { id = user.id });
                 }
                 else
                 {
                     return RedirectToAction("Index");
                 }
-               
+
             }
             else { return RedirectToAction("Login");
             }
-            
+
         }
-        public ActionResult Register()
+        public ActionResult Register(string message)
         {
+            ViewBag.Error = message;
+
             return View();
         }
         public ActionResult registerDAO(UserView item)
         {
-            if (Repository.checkMail(item.email))
+
+            if (!Repository.checkMail(item.email))
             {
-                 return RedirectToAction("Register");
+                if (item.pwd == item.repwd)
+                {
+                    return RedirectToAction("Register");
+                }
+                else
+                {
+                    return RedirectToAction("Register");
+                }
             }
             else
             {
-                return RedirectToAction("Index");
+
+                string msg = "Email đã tồn tại";
+                return RedirectToAction("Register", new {message = msg});
             }
-            //if (item.pwd == item.repwd)
-            //{
-            //    Repository.addUser(item);
-            //}
-            //else
-            //{
-            //    View("Register");
-            //}
-            //return RedirectToAction("Index");
+
         }
         public ActionResult ForgotPassword()
         {
