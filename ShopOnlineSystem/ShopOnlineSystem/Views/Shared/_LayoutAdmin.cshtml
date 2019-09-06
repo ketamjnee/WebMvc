@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    if ((string)Session["userType"] == "Admin")
+    {
+
+    }
+    else
+    {
+       Response.Redirect
+    }
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>

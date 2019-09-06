@@ -49,8 +49,10 @@ namespace ShopOnlineSystem.Controllers
             {
                 Session["idUser"] = user.id;
                 Session["nameUser"] = user.name;
+                Session["userType"] = "User";
                 if (user.userType == 1)
                 {
+                    Session["userType"] = "Admin";
                     return RedirectToAction("Index", "Admin", new { id = user.id });
                 }
                 else
