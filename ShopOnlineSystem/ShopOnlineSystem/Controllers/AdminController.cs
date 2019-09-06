@@ -13,14 +13,14 @@ namespace ShopOnlineSystem.Controllers
     {
         public ActionResult Index()
         {
-            if ((string)Session["userType"].ToString() == "Admin")
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Index", "User");
-            }  
+            //if ((string)Session["userType"].ToString() == "Admin")
+            //{
+             return View();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Index", "User");
+            //}  
             
         }
         #region category
@@ -109,9 +109,47 @@ namespace ShopOnlineSystem.Controllers
             return RedirectToAction("editProduct");
         }
         #endregion
-        #region user
+        #region Setting
         public ActionResult userSetting()
         {
+            if (Session["idUser"] != null)
+            {
+                int id = Convert.ToInt16(Session["idUser"]);
+                var rs = Repository.getUserId(id);
+                return View(rs);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+        public ActionResult updateAdminDAO(UserView item)
+        {
+            if (item.pwd == item.repwd)
+            {
+                if (!Repository.checkMail(item.email))
+                {
+                    if (Repository.updateInfo(item))
+                    {
+                        Session["Success"] = "Cập nhật thành công";
+                        return RedirectToAction("userSetting");
+                    }
+                    else
+                    {
+                        Session["Error"] = "Cập nhật thất bại";
+                        return RedirectToAction("userSetting");
+                    }
+                }
+                else
+                {
+                    Session["Error"] = "Email đã tồn tại";
+                    return RedirectToAction("userSetting");
+                }
+            }
+            else
+            {
+                return RedirectToAction("userSetting");
+            }
             return View();
         }
         #endregion
