@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="checkout_details_area mt-50 clearfix">
+
+            <div class="cart-title">
+                <h2 class="mb-3">Phản hồi</h2>
+            </div>
+
+            <form action="#" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="email" class="form-control mb-3" id="email" placeholder="Email" value="" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control mb-3" id="product" placeholder="Tên sản phẩm" value="" disabled>
+                    </div>
+                    <div class="col-12">
+                        <textarea name="comment" class="form-control mb-3 " id="comment" cols="30" rows="10" placeholder="Bình luận của khách hàng..." disabled></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success">Gửi email phản hồi</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

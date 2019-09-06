@@ -4,5 +4,55 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>userSetting</h2>
+
+
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <h2 class="mb-3">Quản lý tài khoản</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="username" class="form-control form-control-user" id="inputUsername" placeholder="Username" required>
+                </div>
+                <div class="col-sm-6">
+                    <input type="email" name="email" class="form-control form-control-user" id="inputEmail" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" name="pwd" class="form-control form-control-user" id="inputPassword" placeholder="Mật khẩu" required>
+                </div>
+                <div class="col-sm-6">
+                    <input type="password" name="repwd" class="form-control form-control-user" id="inputPassword2" placeholder="Nhập lại mật khẩu" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="name" class="form-control form-control-user" id="inputName" placeholder="Tên" required>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" name="uAddress" class="form-control form-control-user" id="inputAddress" placeholder="Địa chỉ" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="phone" class="form-control form-control-user" id="inputPhone" placeholder="Số điện thoại" required>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" name="zipcode" class="form-control form-control-user" id="inputZipcode" placeholder="Zip code" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <button type="submit" class="btn btn-success btn-user btn-block">Cập nhật thông tin</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-danger btn-user btn-block">Xóa tài khoản</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="@Url.Content("~/content/admin/assets/")js/validation.js"></script>
 

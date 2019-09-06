@@ -90,15 +90,15 @@
 
             <!-- Nav Item - Feedback -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="@Url.Action("FeedbackAdmin","Admin")">
                     <i class="fas fa-fw fa-comment"></i>
-                    <span>Feedback</span>
+                    <span>Phản hồi</span>
                 </a>
             </li>
 
             <!-- Nav Item - Order -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="@Url.Action("OrderAdmin","Admin")">
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Đơn hàng</span>
                 </a>
@@ -137,7 +137,7 @@
             <!-- Main Content -->
             <div id="content" class="mt-5">
                 <div class="container-fluid">
-                    @RenderBody()
+                   @RenderBody()                
                 </div>
 
             </div>
