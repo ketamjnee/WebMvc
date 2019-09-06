@@ -21,8 +21,14 @@ namespace ShopOnlineSystem.Controllers
             ViewBag.Cat = Repository.GetListCat();
             return View();
         }
-        public ActionResult Product()
+        public ActionResult Product(string id)
         {
+            if(id == null)
+            {
+                RedirectToAction("Index");
+            }
+            ProductView pv = Repository.GetProdByID(Convert.ToInt32(id));
+            ViewBag.Prod = pv;
             return View();
         }
         public ActionResult Cart()

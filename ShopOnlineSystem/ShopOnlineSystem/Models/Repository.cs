@@ -61,6 +61,10 @@ namespace ShopOnlineSystem.Models
         {
             return ProductDAO.getListTitle(pagesize);
         }
+        public static ModelView.ProductView GetProdByID(int id)
+        {
+            return ProductDAO.getDataByID(id);
+        }
         #endregion
 
         #region user
