@@ -63,10 +63,8 @@ namespace ShopOnlineSystem.Controllers
             }
 
         }
-        public ActionResult Register(string message)
+        public ActionResult Register()
         {
-            ViewBag.Error = message;
-
             return View();
         }
         public ActionResult registerDAO(UserView item)
@@ -76,7 +74,8 @@ namespace ShopOnlineSystem.Controllers
             {
                 if (item.pwd == item.repwd)
                 {
-                    return RedirectToAction("Register");
+                    Repository.addUser(item);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -86,8 +85,8 @@ namespace ShopOnlineSystem.Controllers
             else
             {
 
-                string msg = "Email đã tồn tại";
-                return RedirectToAction("Register", new {message = msg});
+                Session["Error"] = "Email đã tồn tại";
+                return RedirectToAction("Register");
             }
 
         }
