@@ -18,10 +18,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Comment" Type="text" />
           <Property Name="email" Type="varchar" MaxLength="70" />
           <Property Name="typeFB" Type="nvarchar" MaxLength="50" />
           <Property Name="typeComment" Type="int" />
+          <Property Name="feedback" Type="text" />
         </EntityType>
         <EntityType Name="Oder">
           <Key>
@@ -211,10 +211,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
           <Property Name="typeFB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="typeComment" Type="Int32" />
+          <Property Name="feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Oder">
           <Key>
@@ -359,10 +359,10 @@
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="ShopOnlineModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="feedback" ColumnName="feedback" />
                 <ScalarProperty Name="typeComment" ColumnName="typeComment" />
                 <ScalarProperty Name="typeFB" ColumnName="typeFB" />
                 <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="Comment1" ColumnName="Comment" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -15,9 +15,9 @@ namespace ShopOnlineSystem.Models.ModelData
     public partial class Comment
     {
         public int id { get; set; }
-        public string Comment1 { get; set; }
         public string email { get; set; }
         public string typeFB { get; set; }
         public Nullable<int> typeComment { get; set; }
+        public string feedback { get; set; }
     }
 }
