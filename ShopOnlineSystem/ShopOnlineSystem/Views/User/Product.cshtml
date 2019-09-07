@@ -100,11 +100,11 @@
                             <!-- Avaiable -->
                             @if (ViewBag.Prod.stock > 10)
                             {
-                                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                                <p class="avaibility"><i class="fa fa-circle"></i> Còn hàng</p>
                             }
                             else
                             {
-                                <p class="nonavaibility"><i class="fa fa-circle  text-danger" style="font-size:12px;"></i> Out of Stock</p>
+                                <p class="nonavaibility"><i class="fa fa-circle  text-danger" style="font-size:12px;"></i> Hết hàng</p>
                             }
 
                         </div>
@@ -123,7 +123,7 @@
                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                                 </div>
                             </div>
-                            <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                            <button type="submit" name="addtocart" value="5" class="btn amado-btn">Thêm vào giỏ hàng</button>
                         </form>
                     </div>
                 </div>
