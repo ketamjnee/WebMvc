@@ -69,6 +69,14 @@ namespace ShopOnlineSystem.Models
         {
             return ProductDAO.AddProduct(item);
         }
+        public static List<ModelView.PView> GetListProdView()
+        {
+            return ProductDAO.GetListProdVIew();
+        }
+        public static ModelView.PView GetProdViewByID(int id)
+        {
+            return ProductDAO.GetProdByID(id);
+        }
         #endregion
 
         #region user

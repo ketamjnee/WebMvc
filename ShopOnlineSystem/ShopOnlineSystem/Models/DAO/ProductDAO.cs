@@ -240,5 +240,51 @@ namespace ShopOnlineSystem.Models.DAO
             db.SaveChanges();
             return pro.id;
         }
+        public static List<ModelView.PView> GetListProdVIew()
+        {
+            db = new ShopOnlineEntities();
+            List<ModelView.PView> rs = db.Products.Where(p => p.StatusProd == 1).Select(p => new ModelView.PView
+            {
+                id = p.id,
+                IDC = p.IDC ?? 0,
+                CateName = p.Category.name,
+                description = p.description,
+                name = p.name,
+                StatusProd = p.StatusProd,
+                price = p.price,
+                stock = p.stock,
+                image = (db.ProImages.Where(i => i.IDP == p.id).Select(i => new ModelView.ProImageView
+                {
+                    ID = i.ID,
+                    IDP = i.IDP ?? 0,
+                    Name = i.Name,
+                    StatusIMG = i.StatusIMG
+                }).ToList())
+            }).ToList();
+            return rs;
+        }
+        public static ModelView.PView GetProdByID(int id)
+        {
+            db = new ShopOnlineEntities();
+            var rs = db.Products.Where(p => p.StatusProd == 1 && p.id == id).Select(p => new ModelView.PView
+            {
+                id = p.id,
+                IDC = p.IDC ?? 0,
+                CateName = p.Category.name,
+                description = p.description,
+                name = p.name,
+                StatusProd = p.StatusProd,
+                price = p.price,
+                stock = p.stock,
+                image = (db.ProImages.Where(i => i.IDP == p.id).Select(i => new ModelView.ProImageView
+                {
+                    ID = i.ID,
+                    IDP = i.IDP ?? 0,
+                    Name = i.Name,
+                    StatusIMG = i.StatusIMG
+                }).ToList())
+            }).SingleOrDefault();
+            return rs;
+        }
     }
 }

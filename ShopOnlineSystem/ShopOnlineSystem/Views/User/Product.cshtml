@@ -31,36 +31,46 @@
                     <div class="single_product_thumb">
                         <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li class="" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture);">
-                                </li>
-                                <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture);" class="">
-                                </li>
-                                <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture);" class="">
-                                </li>
-                                <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture);" class="active">
-                                </li>
+                                
+                                @{
+                                    int i = 0;
+                                 }
+                                @foreach (var img in ViewBag.Prod.image)
+                                {
+                                    if (img.StatusIMG == 1)
+                                    {
+                                        <li data-target="#product_details_slider" data-slide-to="@i" style="background-image: url(@Url.Content("~/content/picture/admin/Product/")@img.Name);" class="active">
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li data-target="#product_details_slider" data-slide-to="@i" style="background-image: url(@Url.Content("~/content/picture/admin/Product/")@img.Name);" class="">
+                                        </li>
+                                    }
+                                    i++;
+                                }
                             </ol>
                             <div class="carousel-inner">
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture">
-                                        <img class="d-block w-100" src="@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture" alt="First slide">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture">
-                                        <img class="d-block w-100" src="@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture" alt="Second slide">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture">
-                                        <img class="d-block w-100" src="@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture" alt="Third slide">
-                                    </a>
-                                </div>
-                                <div class="carousel-item active">
-                                    <a class="gallery_img" href="@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture">
-                                        <img class="d-block w-100" src="@Url.Content("~/content/picture/admin/Product/")@ViewBag.Prod.picture" alt="Fourth slide">
-                                    </a>
-                                </div>
+                                @foreach (var img in ViewBag.Prod.image)
+                                {
+                                    if (img.StatusIMG == 1)
+                                    {
+                                        <div class="carousel-item active">
+                                            <a class="gallery_img" href="@Url.Content("~/content/picture/admin/Product/")@img.Name">
+                                                <img class="d-block w-100" src="@Url.Content("~/content/picture/admin/Product/")@img.Name" alt="Product picture">
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="carousel-item">
+                                            <a class="gallery_img" href="@Url.Content("~/content/picture/admin/Product/")@img.Name">
+                                                <img class="d-block w-100" src="@Url.Content("~/content/picture/admin/Product/")@img.Name" alt="Product picture">
+                                            </a>
+                                        </div>
+                                    }
+
+                                }
                             </div>
                         </div>
                     </div>

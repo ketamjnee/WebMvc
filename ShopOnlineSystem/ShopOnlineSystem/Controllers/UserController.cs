@@ -23,11 +23,12 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult Product(string id)
         {
+            ViewBag.STT = 0;
             if(id == null)
             {
                 RedirectToAction("Index");
             }
-            ProductView pv = Repository.GetProdByID(Convert.ToInt32(id));
+            PView pv = Repository.GetProdViewByID(Convert.ToInt32(id));
             ViewBag.Prod = pv;
             return View();
         }
