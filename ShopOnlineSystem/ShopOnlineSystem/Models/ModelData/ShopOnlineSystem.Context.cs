@@ -31,6 +31,7 @@ namespace ShopOnlineSystem.Models.ModelData
         public virtual DbSet<OderDetail> OderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProImage> ProImages { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<WebUser> WebUsers { get; set; }
     }
 }

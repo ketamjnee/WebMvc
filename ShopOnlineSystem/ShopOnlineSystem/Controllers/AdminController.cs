@@ -128,10 +128,9 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult updateAdminDAO(UserView item)
         {
+            item.id = Convert.ToInt16(Session["idUser"]); 
             if (item.pwd == item.repwd)
             {
-                if (!Repository.checkMail(item.email))
-                {
                     if (Repository.updateInfo(item))
                     {
                         Session["Success"] = "Cập nhật thành công";
@@ -142,18 +141,18 @@ namespace ShopOnlineSystem.Controllers
                         Session["Error"] = "Cập nhật thất bại";
                         return RedirectToAction("userSetting");
                     }
-                }
-                else
-                {
-                    Session["Error"] = "Email đã tồn tại";
-                    return RedirectToAction("userSetting");
-                }
             }
             else
             {
                 return RedirectToAction("userSetting");
             }
             return View();
+        }
+        public ActionResult LogoutAdmin()
+        {
+            Session["idUser"] = null;
+            Session["userType"] = null;
+            return RedirectToAction("Index", "User");
         }
         #endregion
         #region Tương tác
