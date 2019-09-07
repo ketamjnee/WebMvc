@@ -13,14 +13,7 @@ namespace ShopOnlineSystem.Controllers
     {
         public ActionResult Index()
         {
-            //if ((string)Session["userType"].ToString() == "Admin")
-            //{
              return View();
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Index", "User");
-            //}  
             
         }
         #region category
@@ -76,16 +69,26 @@ namespace ShopOnlineSystem.Controllers
             Repository.deleteProduct(id);
             return RedirectToAction("editProduct");
         }
-        public ActionResult addProductDAO(ProductView item,HttpPostedFileBase picture)
+        public ActionResult addProductDAO(PView item,HttpPostedFileBase[] picture)
         {
-            // int price = Convert.ToInt32(item.price);
-            //item.price = price;
+            int id = Repository.AddProduct(item);
+            int count = 0;
             if (picture != null)
             {
-                string path = Path.Combine(Server.MapPath("~/Content/Picture/Admin/Product"), Path.GetFileName(picture.FileName));
-                picture.SaveAs(path);
+                foreach (var p in picture)
+                {
+                    byte status = 2;
+                    string path = Path.Combine(Server.MapPath("~/Content/Picture/Admin/Product"), Path.GetFileName(p.FileName));
+                    p.SaveAs(path);
+                    if (count == 0)
+                    {
+                        status = 1;
+                    }
+                    Repository.AddImage(new ProImageView { Name = p.FileName, IDP = id, StatusIMG = status });
+                    count++;
+                }               
             }
-            Repository.addProduct(item,picture);
+            
             return RedirectToAction("editProduct");
         }
         public ActionResult editProduct()

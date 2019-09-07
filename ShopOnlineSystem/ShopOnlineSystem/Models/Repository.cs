@@ -65,6 +65,10 @@ namespace ShopOnlineSystem.Models
         {
             return ProductDAO.getDataByID(id);
         }
+        public static int AddProduct(ModelView.PView item)
+        {
+            return ProductDAO.AddProduct(item);
+        }
         #endregion
 
         #region user
@@ -87,6 +91,13 @@ namespace ShopOnlineSystem.Models
         public static bool updateInfo(ModelView.UserView item)
         {
             return UserDAO.updateInfo(item);
+        }
+        #endregion
+
+        #region Product Image
+        public static bool AddImage(ModelView.ProImageView item)
+        {
+            return ProImageDAO.AddNewImage(item);
         }
         #endregion
     }
