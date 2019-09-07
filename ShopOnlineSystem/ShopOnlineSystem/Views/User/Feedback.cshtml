@@ -16,7 +16,7 @@
                     <form action="@Url.Action("feddBackDAO")" method="post">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <input type="email" class="form-control" id="email" placeholder="Email" value="" disabled>
+                                <input type="email" class="form-control" id="email" placeholder="Email" value="" readonly>
                             </div>
 
                             <div class="col-md-6 mb-3">
@@ -24,6 +24,9 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <textarea name="comment" class="form-control w-100" id="comment" cols="30" rows="10" placeholder="Để bình luận ở đây..."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <p class="small text-center text-danger" id="txtValidateUsername">cacacac</p>                               
                             </div>
                             <div class="col-md-6 mb-3">
                                 <button type="submit" class="btn amado-btn w-100">Gửi phản hồi</button>
