@@ -14,7 +14,7 @@ namespace ShopOnlineSystem.Models.ModelView
         public int stock { get; set; }
         public int IDC { get; set; }
         public int StatusProd { get; set; }
-        public List<ModelView.ProImageView> image { get; set; }
+        public List<ProImageView> image { get; set; }
         public string CateName { get; set; }
     }
 }
