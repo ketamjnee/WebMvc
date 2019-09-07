@@ -100,7 +100,7 @@ namespace ShopOnlineSystem.Models.DAO
              where p.statusprod=1 
              
              */
-            IQueryable<ModelView.ProductView> result = from prod in db.Products
+            IQueryable<ModelView.ProductView> result = (from prod in db.Products
                                                        where prod.StatusProd == 1
                                                        select new ModelView.ProductView
                                                        {
@@ -112,7 +112,7 @@ namespace ShopOnlineSystem.Models.DAO
                                                            stock = prod.stock,
                                                            picture = (prod.ProImages.Where(d => d.StatusIMG == 1 && d.IDP == prod.id).FirstOrDefault()).Name,
                                                            CateName = prod.Category.name
-                                                       };
+                                                       }).OrderByDescending(prod => prod.id);
             return result.ToList();
         }
         public static bool addProduct(ModelView.ProductView item, HttpPostedFileBase picture)

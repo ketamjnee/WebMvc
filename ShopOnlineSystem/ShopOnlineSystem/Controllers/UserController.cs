@@ -57,6 +57,7 @@ namespace ShopOnlineSystem.Controllers
                 Session["idUser"] = user.id;
                 Session["nameUser"] = user.name;
                 Session["userType"] = "User";
+                Session["emailUser"] = user.email;
                 if (user.userType == 1)
                 {
                     Session["userType"] = "Admin";
@@ -142,12 +143,18 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult Feedback()
         {
-            return View();
+          return View();
         }
         public ActionResult feddBackDAO(CommentView item)
         {
+            if (item.email != null)
+            {
+                Repository.addFeedBack(item);
+                return RedirectToAction("Index");
+            }
+            else { return RedirectToAction("Feedback"); }
 
-            return RedirectToAction("FeedBack");
+            
         }
     }
 }

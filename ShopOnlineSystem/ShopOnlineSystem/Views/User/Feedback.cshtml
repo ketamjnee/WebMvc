@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Feedback";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
 }
 <div class="cart-table-area section-padding-100">
     <div class="container-fluid">
@@ -16,9 +17,8 @@
                     <form action="@Url.Action("feddBackDAO")" method="post">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <input type="email" class="form-control" id="email" placeholder="Email" value="" readonly>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Email"  value="@(Session["emailUser"]!=null?Session["emailUser"].ToString():"")">
                             </div>
-
                             <div class="col-md-6 mb-3">
                                 <input type="text" name="typeFB" class="form-control mb-3" id="product" placeholder="Kiểu khiếu nại" value="">
                             </div>

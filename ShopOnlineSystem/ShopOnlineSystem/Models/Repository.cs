@@ -100,6 +100,10 @@ namespace ShopOnlineSystem.Models
         {
             return UserDAO.updateInfo(item);
         }
+        public static bool addFeedBack(ModelView.CommentView item)
+        {
+            return UserDAO.addFeedBack(item);
+        }
         #endregion
 
         #region Product Image
