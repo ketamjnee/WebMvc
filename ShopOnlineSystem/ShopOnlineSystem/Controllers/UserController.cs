@@ -32,6 +32,11 @@ namespace ShopOnlineSystem.Controllers
             ViewBag.Prod = pv;
             return View();
         }
+        public ActionResult addCart(cartView item)
+        {
+
+            return RedirectToAction("Product", new { id = item.idPro });
+        }
         public ActionResult Cart()
         {
             return View();

@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Business\cartWeb.cs" />
     <Compile Include="Models\DAO\CategoryDAO.cs" />
     <Compile Include="Models\DAO\ProductDAO.cs" />
     <Compile Include="Models\DAO\ProImageDAO.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Models\ModelData\WebUser.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelView\cartView.cs" />
     <Compile Include="Models\ModelView\Category.cs" />
     <Compile Include="Models\ModelView\CategoryView.cs" />
     <Compile Include="Models\ModelView\CommentView.cs" />
@@ -2110,7 +2112,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Picture\Admin\Product\" />
     <Folder Include="Content\Picture\User\" />
-    <Folder Include="Models\Business\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
