@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Security.Cryptography;
+using System.Text;
 using ShopOnlineSystem.Models.ModelData;
+using System.IO;
+
 namespace ShopOnlineSystem.Models.DAO
 {
     public class UserDAO
@@ -85,9 +87,11 @@ namespace ShopOnlineSystem.Models.DAO
             db = new ShopOnlineEntities();
             try
             {
-                WebUser user = db.WebUsers.Where(x => x.email == item.email && x.pwd == item.pwd).FirstOrDefault() as WebUser;
+                
+                WebUser user = db.WebUsers.Where(x => x.email == item.email).FirstOrDefault() as WebUser;
                 if (user.ID > 0)
-                { 
+                {
+                    item.pwd = Decrypt(user.pwd);
                     item.id = user.ID;
                     item.userType = user.usertype;
                     item.name = user.name;
@@ -110,7 +114,8 @@ namespace ShopOnlineSystem.Models.DAO
                 {
                     username = item.username,
                     email = item.email,
-                    pwd = item.pwd,
+                    //Mã hóa
+                    pwd = Encrypt(item.pwd),
                     name = item.name,
                     uAddress = item.uAddress,
                     phone = item.phone,
@@ -148,5 +153,69 @@ namespace ShopOnlineSystem.Models.DAO
                 throw ex;
             }
         }
+        //VA code cực mạnh
+        #region Mã hóa pass
+        // set permutations
+        public const String strPermutation = "ouiveyxaqtd";
+        public const Int32 bytePermutation1 = 0x19;
+        public const Int32 bytePermutation2 = 0x59;
+        public const Int32 bytePermutation3 = 0x17;
+        public const Int32 bytePermutation4 = 0x41;
+        // encoding
+        public static string Encrypt(string strData)
+        {
+            return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(strData)));           
+        }
+        // decoding
+        public static string Decrypt(string strData)
+        {
+            return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(strData)));
+        }
+        // encrypt
+        public static byte[] Encrypt(byte[] strData)
+        {
+            PasswordDeriveBytes passbytes =
+            new PasswordDeriveBytes(strPermutation,
+            new byte[] { bytePermutation1,
+                         bytePermutation2,
+                         bytePermutation3,
+                         bytePermutation4
+            });
+
+            MemoryStream memstream = new MemoryStream();
+            Aes aes = new AesManaged();
+            aes.Key = passbytes.GetBytes(aes.KeySize / 8);
+            aes.IV = passbytes.GetBytes(aes.BlockSize / 8);
+
+            CryptoStream cryptostream = new CryptoStream(memstream,
+            aes.CreateEncryptor(), CryptoStreamMode.Write);
+            cryptostream.Write(strData, 0, strData.Length);
+            cryptostream.Close();
+            return memstream.ToArray();
+        }
+
+        // decrypt
+        public static byte[] Decrypt(byte[] strData)
+        {
+            PasswordDeriveBytes passbytes =
+            new PasswordDeriveBytes(strPermutation,
+            new byte[] { bytePermutation1,
+                         bytePermutation2,
+                         bytePermutation3,
+                         bytePermutation4
+            });
+
+            MemoryStream memstream = new MemoryStream();
+            Aes aes = new AesManaged();
+            aes.Key = passbytes.GetBytes(aes.KeySize / 8);
+            aes.IV = passbytes.GetBytes(aes.BlockSize / 8);
+
+            CryptoStream cryptostream = new CryptoStream(memstream,
+            aes.CreateDecryptor(), CryptoStreamMode.Write);
+            cryptostream.Write(strData, 0, strData.Length);
+            cryptostream.Close();
+            return memstream.ToArray();
+        }
+        #endregion
     }
 }

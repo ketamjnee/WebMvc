@@ -54,14 +54,21 @@ namespace ShopOnlineSystem.Controllers
             UserView user = Repository.loginUser(item);
             if (user.id > 0)
             {
-                Session["idUser"] = user.id;
-                Session["nameUser"] = user.name;
-                Session["userType"] = "User";
-                Session["emailUser"] = user.email;
-                if (user.userType == 1)
+                if (user.pwd == item.pwd)
                 {
-                    Session["userType"] = "Admin";
-                    return RedirectToAction("Index", "Admin");
+                    Session["idUser"] = user.id;
+                    Session["nameUser"] = user.name;
+                    Session["userType"] = "User";
+                    Session["emailUser"] = user.email;
+                    if (user.userType == 1)
+                    {
+                        Session["userType"] = "Admin";
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
                 else
                 {
@@ -69,11 +76,12 @@ namespace ShopOnlineSystem.Controllers
                 }
 
             }
-            else {
-                Session["ErrorLogin"] = "Email hoặc mật khẩu không đúng"; 
+            else
+            {
+                Session["ErrorLogin"] = "Email hoặc mật khẩu không đúng";
                 return RedirectToAction("Login");
+            
             }
-
         }
         public ActionResult Register()
         {
