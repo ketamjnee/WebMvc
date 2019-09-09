@@ -133,11 +133,13 @@ namespace ShopOnlineSystem.Models.DAO
             {
                 Comment cm = new Comment
                 {
-                    Comment1 = item.comment,
+                    feedback = item.comment,
                     email = item.email,
                     typeComment = 0,
                     typeFB = item.typeFB
                 };
+                db.Comments.Add(cm);
+                db.SaveChanges();
                 return true;
             }
             catch (Exception ex)

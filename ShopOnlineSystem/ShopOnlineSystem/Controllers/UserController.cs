@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using ShopOnlineSystem.Models;
 using ShopOnlineSystem.Models.ModelView;
 using ShopOnlineSystem.Models.DAO;
+using Newtonsoft.Json;
+
 namespace ShopOnlineSystem.Controllers
 {
     public class UserController : Controller
@@ -32,13 +34,86 @@ namespace ShopOnlineSystem.Controllers
             ViewBag.Prod = pv;
             return View();
         }
+        public ActionResult addCart(cartView item)
+        {
+            if (Request.Cookies["cartItem"] == null)
+            {
+                cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name,price = item.price };
+                List<cartView> lcv = new List<cartView>();
+                lcv.Add(cv);
+                string rs = JsonConvert.SerializeObject(lcv);
+                HttpCookie ck = new HttpCookie("cartItem", rs);
+                ck.Expires.AddDays(2);
+                Response.Cookies.Add(ck);
+            }
+            else
+            {
+                string rs = Request.Cookies["cartItem"].Value;
+                List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
+                var obj = lcv.FirstOrDefault(x => x.idPro == item.idPro);
+                if (obj != null) {
+                    obj.quantity += 1;
+                } else {
+                    cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name, price = item.price };
+                    lcv.Add(cv); }
+                rs = JsonConvert.SerializeObject(lcv);
+                Response.Cookies["cartItem"].Value = rs;
+            }
+            return RedirectToAction("Product", new { id = item.idPro });
+        }
         public ActionResult Cart()
         {
+            if (Request.Cookies["cartItem"] == null)
+            {
+                ViewBag.CartError = "Không có sản phẩm trong giỏ hàng";
+            }
+            else
+            {
+                string rs = Request.Cookies["cartItem"].Value;
+                List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
+                ViewBag.cartItem = lcv;
+            }
+            
             return View();
+        }
+        public ActionResult deleteCart(int id)
+        {
+            string rs = Request.Cookies["cartItem"].Value;
+            List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
+            var item = lcv.Single(r => r.idPro == id);
+            lcv.Remove(item);
+            rs = JsonConvert.SerializeObject(lcv);
+            Response.Cookies["cartItem"].Value = rs;
+            return RedirectToAction("Cart");
         }
         public ActionResult Checkout()
         {
+            if (Session["idUser"] == null)
+            {
+                
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["idUser"]);
+                var rs = Repository.getUserId(id);
+                ViewBag.User = rs;
+            }
+            if (Request.Cookies["cartItem"] == null)
+            {
+                ViewBag.CartError = "Không có sản phẩm trong giỏ hàng";
+            }
+            else
+            {
+                string rs = Request.Cookies["cartItem"].Value;
+                List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
+                ViewBag.cartItem = lcv;
+            }
             return View();
+        }
+        public ActionResult checkOutDAO(OderView item)
+        {
+            
+            return RedirectToAction("Index");
         }
         public ActionResult Login()
         {
@@ -57,6 +132,7 @@ namespace ShopOnlineSystem.Controllers
                 Session["idUser"] = user.id;
                 Session["nameUser"] = user.name;
                 Session["userType"] = "User";
+                Session["emailUser"] = user.email;
                 if (user.userType == 1)
                 {
                     Session["userType"] = "Admin";
@@ -142,12 +218,27 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult Feedback()
         {
-            return View();
+          return View();
         }
         public ActionResult feddBackDAO(CommentView item)
         {
+            if (item.email != null)
+            {
+                Repository.addFeedBack(item);
+                return RedirectToAction("Index");
+            }
+            else { return RedirectToAction("Feedback"); }
 
-            return RedirectToAction("FeedBack");
+            
+        }
+        public ActionResult clearCookie()
+        {
+            string[] myck = Request.Cookies.AllKeys;
+            foreach (var item in myck)
+            {
+                Response.Cookies[item].Expires = DateTime.Now.AddDays(-1);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

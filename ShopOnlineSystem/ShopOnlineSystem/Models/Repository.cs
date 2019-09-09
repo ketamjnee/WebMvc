@@ -100,12 +100,22 @@ namespace ShopOnlineSystem.Models
         {
             return UserDAO.updateInfo(item);
         }
+        public static bool addFeedBack(ModelView.CommentView item)
+        {
+            return UserDAO.addFeedBack(item);
+        }
         #endregion
 
         #region Product Image
         public static bool AddImage(ModelView.ProImageView item)
         {
             return ProImageDAO.AddNewImage(item);
+        }
+        #endregion
+        #region oder
+        public static int addOder(ModelView.OderView item)
+        {
+            return OderDAO.addOder(item);
         }
         #endregion
     }
