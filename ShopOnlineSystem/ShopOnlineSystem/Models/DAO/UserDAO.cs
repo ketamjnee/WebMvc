@@ -222,36 +222,10 @@ namespace ShopOnlineSystem.Models.DAO
             return memstream.ToArray();
         }
         #endregion
-        #region Quên pass
-        /*
-        
-        public static bool checkEmailValid(ModelView.UserView item)
+        #region Quên pass      
+        public static void sendVerificationLinkEmail(string email, string emailFor = "ResetPassword")
         {
-            db = new ShopOnlineEntities();
-            try
-            {
-                WebUser user = db.WebUsers.Where(x => x.email == item.email).FirstOrDefault() as WebUser;
-                if(user != null)
-                {
-                    //Send email reset pass
-                    string resetCode = Guid.NewGuid().ToString();
-                    sendVerificationLinkEmail(user.email, resetCode, "ResetPassword");
-                    user.resetPwCode = resetCode;
-                    db.Configuration.ValidateOnSaveEnabled = false;
-                    db.SaveChanges();
-   
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            return false;
-        }
-        public static void sendVerificationLinkEmail(string email, string activationCode, string emailFor)
-        {
-            var verifyUrl = "/User/" + emailFor + "/" + activationCode;
+            var verifyUrl = "/User/" + emailFor;
             var link = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, verifyUrl);
             var fromEmail = new MailAddress("testkeylogger2019@gmail.com", "Nội thất Incom");
             var toEmail = new MailAddress(email);
@@ -261,8 +235,8 @@ namespace ShopOnlineSystem.Models.DAO
             if(emailFor == "ResetPassword")
             {
                 subject = "Lấy lại mật khẩu";
-                body = "Chào bạn, </br></br> chúng tôi nhận được yêu cầu lấy lại mật khẩu. Vui lòng bấm vào link phía" +
-                    " dưới để đặt lại mật khẩu </br></br><a href=" + link + ">Link đặt lại mật khẩu</a>";
+                body = "Chào bạn, </br> chúng tôi nhận được yêu cầu lấy lại mật khẩu. Vui lòng bấm vào link phía" +
+                    " dưới để đặt lại mật khẩu </br><a href=" + link + ">Link đặt lại mật khẩu</a>";
             }
             var smtp = new SmtpClient
             {
@@ -275,7 +249,7 @@ namespace ShopOnlineSystem.Models.DAO
             };
         }
         
-    */
+    
         #endregion
     }
 }
