@@ -278,15 +278,15 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult ForgotPasswordDAO(UserView item)
         {
-            if (Repository.checkMail(item.email))
+            if (!Repository.checkMail(item.email))
             {
-                Models.DAO.UserDAO.sendVerificationLinkEmail(item.email, "ResetPassword");
-                Session["Error"] = "Link lấy lại mật khẩu đã được gửi vào mail của bạn";
-                return RedirectToAction("ForgotPassword");
+                Session["Error"] = "Email không tồn tại!";
+                return RedirectToAction("ForgotPassword");             
             }
             else
             {
-                Session["Error"] = "Email không tồn tại!";
+                Models.DAO.UserDAO.sendVerificationLinkEmail(item.email, "ResetPassword");
+                Session["Error"] = "Link lấy lại mật khẩu đã được gửi vào mail của bạn";
                 return RedirectToAction("ForgotPassword");
             }
         }
