@@ -55,6 +55,9 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -110,9 +113,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -136,7 +136,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Business\cartWeb.cs" />
     <Compile Include="Models\DAO\CategoryDAO.cs" />
+    <Compile Include="Models\DAO\OderDAO.cs" />
     <Compile Include="Models\DAO\ProductDAO.cs" />
     <Compile Include="Models\DAO\ProImageDAO.cs" />
     <Compile Include="Models\DAO\UserDAO.cs" />
@@ -179,9 +181,12 @@
     <Compile Include="Models\ModelData\WebUser.cs">
       <DependentUpon>ShopOnlineSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelView\cartView.cs" />
     <Compile Include="Models\ModelView\Category.cs" />
     <Compile Include="Models\ModelView\CategoryView.cs" />
     <Compile Include="Models\ModelView\CommentView.cs" />
+    <Compile Include="Models\ModelView\oderDetailView.cs" />
+    <Compile Include="Models\ModelView\OderView.cs" />
     <Compile Include="Models\ModelView\ProductView.cs" />
     <Compile Include="Models\ModelView\ProImageView.cs" />
     <Compile Include="Models\ModelView\PView.cs" />
@@ -2074,7 +2079,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -2113,7 +2120,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Picture\Admin\Product\" />
     <Folder Include="Content\Picture\User\" />
-    <Folder Include="Models\Business\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

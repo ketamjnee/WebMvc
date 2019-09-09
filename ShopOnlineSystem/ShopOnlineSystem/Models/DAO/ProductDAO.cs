@@ -259,7 +259,7 @@ namespace ShopOnlineSystem.Models.DAO
                     IDP = i.IDP ?? 0,
                     Name = i.Name,
                     StatusIMG = i.StatusIMG
-                }).ToList())
+                }).OrderBy(i=>i.ID).Take(4).ToList())
             }).ToList();
             return rs;
         }
@@ -282,7 +282,7 @@ namespace ShopOnlineSystem.Models.DAO
                     IDP = i.IDP ?? 0,
                     Name = i.Name,
                     StatusIMG = i.StatusIMG
-                }).ToList())
+                }).OrderBy(i=>i.ID).Take(4).ToList())
             }).SingleOrDefault();
             return rs;
         }

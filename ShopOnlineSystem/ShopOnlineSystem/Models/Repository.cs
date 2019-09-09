@@ -112,6 +112,16 @@ namespace ShopOnlineSystem.Models
             return ProImageDAO.AddNewImage(item);
         }
         #endregion
+        #region oder
+        public static int addOder(ModelView.OderView item)
+        {
+            return OderDAO.addOder(item);
+        }
+        public static bool addOderDt(ModelView.oderDetailView item)
+        {
+            return OderDAO.addOderDt(item);
+        }
+        #endregion
     }
 
 

@@ -44,7 +44,7 @@
                                     }
                                     else
                                     {
-                                        <li data-target="#product_details_slider" data-slide-to="@i" style="background-image: url(@Url.Content("~/content/picture/admin/Product/")@img.Name);" class="">
+                                        <li data-target="#product_details_slider" data-slide-to="@i" style="background-image: url(@Url.Content("~/Content/Picture/Admin/Product/")@img.Name);" class="">
                                         </li>
                                     }
                                     i++;
@@ -112,13 +112,16 @@
                         <div class="short_overview my-5">
                             <p>@ViewBag.Prod.description</p>
                         </div>
-
+                        
                         <!-- Add to Cart Form -->
-                        <form class="cart clearfix" method="post">
+                        <form class="cart clearfix" method="post" action="@Url.Action("addCart")">
                             <div class="cart-btn d-flex mb-50">
                                 <p>Qty</p>
                                 <div class="quantity">
                                     <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty > 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                    <input type="hidden" name="idPro" value="@ViewBag.Prod.id" />      
+                                    <input type="hidden" name="name" value="@ViewBag.Prod.name" />
+                                    <input type="hidden"  name="price" value="@ViewBag.Prod.price" />
                                     <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                                 </div>
