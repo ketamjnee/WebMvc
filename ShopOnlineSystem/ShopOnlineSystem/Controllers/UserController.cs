@@ -88,6 +88,16 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult Checkout()
         {
+            if (Session["idUser"] == null)
+            {
+                
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["idUser"]);
+                var rs = Repository.getUserId(id);
+                ViewBag.User = rs;
+            }
             if (Request.Cookies["cartItem"] == null)
             {
                 ViewBag.CartError = "Không có sản phẩm trong giỏ hàng";
