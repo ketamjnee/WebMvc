@@ -88,7 +88,22 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult Checkout()
         {
+            if (Request.Cookies["cartItem"] == null)
+            {
+                ViewBag.CartError = "Không có sản phẩm trong giỏ hàng";
+            }
+            else
+            {
+                string rs = Request.Cookies["cartItem"].Value;
+                List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
+                ViewBag.cartItem = lcv;
+            }
             return View();
+        }
+        public ActionResult checkOutDAO(OderView item)
+        {
+            
+            return RedirectToAction("Index");
         }
         public ActionResult Login()
         {

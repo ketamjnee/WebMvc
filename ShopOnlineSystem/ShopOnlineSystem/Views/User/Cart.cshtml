@@ -3,6 +3,7 @@
     ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
     List<ShopOnlineSystem.Models.ModelView.cartView> lcv = ViewBag.cartItem as List<ShopOnlineSystem.Models.ModelView.cartView>;
+    int tong = 0;
 }
 
 <div class="cart-table-area section-padding-100">
@@ -29,7 +30,8 @@
                                 {
                                     foreach (var item in lcv)
                                     {
-                            <tr>
+                                        tong += item.price * item.quantity;
+                                    <tr>
                                 <td class="cart_product_img">
                                     <a href="#"><img src="@Url.Content("~/content/user/assets/")img/bg-img/cart1.jpg" alt="Product"></a>
                                 </td>
@@ -38,6 +40,7 @@
                                 </td>
                                 <td class="price">
                                     <span>@item.price</span>
+                                    @Html.ActionLink("Xóa", "deleteCart", new { id = item.idPro }, null)
                                 </td>
                                 <td class="qty">
                                     <div class="qty-btn d-flex">
@@ -49,7 +52,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                @Html.ActionLink("Xóa", "deleteCart", new { id = item.idPro }, null)
+                               
                             </tr>
                                     }
 
@@ -64,10 +67,11 @@
                 <div class="cart-summary">
                     <h5>Đơn hàng</h5>
                     <ul class="summary-table">
-                        <li><span>Tạm tính:</span> <span>$140.00</span></li>
+                       
+                        <li><span>Tạm tính:</span> <span>@tong VND</span></li>
                         <li><span>Phí ship:</span> <span>Free</span></li>
                         <hr />
-                        <li><span>Tổng cộng:</span> <span>$140.00</span></li>
+                        <li><span>Tổng cộng:</span> <span>@tong VND</span></li>
                     </ul>
                     <div class="cart-btn mt-50">
                         <a href="@Url.Action("Checkout","user")" class="btn amado-btn w-100">Thanh toán</a>

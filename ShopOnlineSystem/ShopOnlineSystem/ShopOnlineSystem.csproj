@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="Models\Business\cartWeb.cs" />
     <Compile Include="Models\DAO\CategoryDAO.cs" />
+    <Compile Include="Models\DAO\OderDAO.cs" />
     <Compile Include="Models\DAO\ProductDAO.cs" />
     <Compile Include="Models\DAO\ProImageDAO.cs" />
     <Compile Include="Models\DAO\UserDAO.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Models\ModelView\Category.cs" />
     <Compile Include="Models\ModelView\CategoryView.cs" />
     <Compile Include="Models\ModelView\CommentView.cs" />
+    <Compile Include="Models\ModelView\OderView.cs" />
     <Compile Include="Models\ModelView\ProductView.cs" />
     <Compile Include="Models\ModelView\ProImageView.cs" />
     <Compile Include="Models\ModelView\PView.cs" />

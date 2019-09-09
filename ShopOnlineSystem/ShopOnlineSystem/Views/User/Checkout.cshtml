@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Thanh toán";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    List<ShopOnlineSystem.Models.ModelView.cartView> lcv = ViewBag.cartItem as List<ShopOnlineSystem.Models.ModelView.cartView>;
+    int tong = 0;
 }
 
 <div class="cart-table-area section-padding-100">
@@ -14,77 +16,77 @@
                         <h2>Thông tin giao hàng</h2>
                     </div>
 
-                    <form action="#" method="post">
+                    <form action="@Url.Action("checkOutDAO")" method="post">
                         <div class="row">
                             <div class="col-12 mb-3">
-                                <input type="text" class="form-control" id="first_name" value="" placeholder="Họ và tên" required="">
+                                <input type="text" name="CustName" class="form-control" id="first_name" value="" placeholder="Họ và tên" required="">
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="email" class="form-control" id="email" placeholder="Email" value="">
+                                <input type="email" name="CustEmail" class="form-control" id="email" placeholder="Email" value="">
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="text" class="form-control" id="email" placeholder="Số điện thoại" value="">
+                                <input type="text" name="CustPhone" class="form-control" id="email" placeholder="Số điện thoại" value="">
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="text" class="form-control" id="email" placeholder="Địa chỉ" value="">
+                                <input type="text" name="CustAddress" class="form-control" id="email" placeholder="Địa chỉ" value="">
                             </div>
                         </div>
-                    </form>
+
                 </div>
             </div>
-            <div class="col-12 col-lg-6">               
+            <div class="col-12 col-lg-6">
                 <div class="cart-summary">
                     <h5 class="mb-15">Giỏ hàng</h5>
                     <!--Table-->
                     <div class="cart-table clearfix">
                         <table class="table table-responsive" tabindex="1" style="overflow: hidden; outline: none; touch-action: none;">
                             <tbody>
-                                <tr>
-                                    <td class="cart_product_img">
-                                        <a href="#"><img src="@Url.Content("~/content/user/assets/")img/bg-img/cart2.jpg" alt="Product"></a>
-                                    </td>
-                                    <td class="cart_product_desc">
-                                        <h5>Minimal Plant Pot</h5>
-                                    </td>
-                                    <td>
-                                        <span></span>
-                                    </td>
-                                    <td class="price">
-                                        <div class="qty-btn d-flex">
-                                            <p>$10</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cart_product_img">
-                                        <a href="#"><img src="@Url.Content("~/content/user/assets/")img/bg-img/cart2.jpg" alt="Product"></a>
-                                    </td>
-                                    <td class="cart_product_desc">
-                                        <h5>Minimal Plant Pot</h5>
-                                    </td>
-                                    <td>
-                                        <span></span>
-                                    </td>
-                                    <td class="price">
-                                        <div class="qty-btn d-flex">
-                                            <p>$10</p>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @{
+                                    foreach (var item in lcv)
+                                    {
+                                        tong += item.price * item.quantity;
+                                        <tr>
+                                            @*<td class="cart_product_img">
+                                            <a href="#"><img src="@Url.Content("~/content/user/assets/")img/bg-img/cart2.jpg" alt="Product"></a>
+                                        </td>*@
+                                            <td class="cart_product_desc">
+                                                <h5>@item.name</h5>
+                                            </td>
+                                            <td>
+                                                <span></span>
+                                            </td>
+                                            <td class="price">
+                                                <div class="qty-btn d-flex">
+                                                    <p>@item.price</p>
+                                                </div>
+                                            </td>
+                                            <td class="quantity">
+                                                <div class="qty-btn d-flex">
+                                                    <p>@item.quantity</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                }
+
                             </tbody>
                         </table>
                     </div>
                     <ul class="summary-table">
-                        <li><span>Tạm tính:</span> <span>$140.00</span></li>
+                        <li><span>Tạm tính:</span> <span>@tong</span></li>
                         <li><span>Phí ship:</span> <span>Free</span></li>
                         <hr />
-                        <li><span>Tổng cộng:</span> <span>$140.00</span></li>
+                        <li><span>Tổng cộng:</span> <span>@tong</span></li>
                     </ul>
                     <div class="cart-btn mt-50">
-                        <a href="#" class="btn amado-btn w-100">Thanh toán</a>
+                        <button class="btn amado-btn w-100" type="submit">Thanh toán</button>
+
                     </div>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>
