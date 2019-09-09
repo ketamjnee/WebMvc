@@ -38,7 +38,7 @@ namespace ShopOnlineSystem.Controllers
         {
             if (Request.Cookies["cartItem"] == null)
             {
-                cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name };
+                cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name,price = item.price };
                 List<cartView> lcv = new List<cartView>();
                 lcv.Add(cv);
                 string rs = JsonConvert.SerializeObject(lcv);
@@ -50,8 +50,12 @@ namespace ShopOnlineSystem.Controllers
             {
                 string rs = Request.Cookies["cartItem"].Value;
                 List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
-                cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name };
-                lcv.Add(cv);
+                var obj = lcv.FirstOrDefault(x => x.idPro == item.idPro);
+                if (obj != null) {
+                    obj.quantity += 1;
+                } else {
+                    cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name, price = item.price };
+                    lcv.Add(cv); }
                 rs = JsonConvert.SerializeObject(lcv);
                 Response.Cookies["cartItem"].Value = rs;
             }
@@ -59,7 +63,28 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult Cart()
         {
+            if (Request.Cookies["cartItem"] == null)
+            {
+                ViewBag.CartError = "Không có sản phẩm trong giỏ hàng";
+            }
+            else
+            {
+                string rs = Request.Cookies["cartItem"].Value;
+                List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
+                ViewBag.cartItem = lcv;
+            }
+            
             return View();
+        }
+        public ActionResult deleteCart(int id)
+        {
+            string rs = Request.Cookies["cartItem"].Value;
+            List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
+            var item = lcv.Single(r => r.idPro == id);
+            lcv.Remove(item);
+            rs = JsonConvert.SerializeObject(lcv);
+            Response.Cookies["cartItem"].Value = rs;
+            return RedirectToAction("Cart");
         }
         public ActionResult Checkout()
         {
@@ -180,6 +205,15 @@ namespace ShopOnlineSystem.Controllers
             else { return RedirectToAction("Feedback"); }
 
             
+        }
+        public ActionResult clearCookie()
+        {
+            string[] myck = Request.Cookies.AllKeys;
+            foreach (var item in myck)
+            {
+                Response.Cookies[item].Expires = DateTime.Now.AddDays(-1);
+            }
+            return RedirectToAction("Index");
         }
     }
 }
