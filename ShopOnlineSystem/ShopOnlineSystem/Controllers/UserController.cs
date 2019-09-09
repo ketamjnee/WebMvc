@@ -210,10 +210,7 @@ namespace ShopOnlineSystem.Controllers
             }
 
         }
-        public ActionResult ForgotPassword()
-        {
-            return View();
-        }
+      
         public ActionResult UserProfile()
         {
             if (Session["idUser"] == null)
@@ -273,5 +270,16 @@ namespace ShopOnlineSystem.Controllers
             }
             return RedirectToAction("Index");
         }
+        #region Forgot password
+        //VA code cực gãy
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+        #endregion
     }
 }

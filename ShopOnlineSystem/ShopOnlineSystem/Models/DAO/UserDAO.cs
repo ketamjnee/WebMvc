@@ -4,6 +4,10 @@ using System.Security.Cryptography;
 using System.Text;
 using ShopOnlineSystem.Models.ModelData;
 using System.IO;
+using IdentityModel.Client;
+using System.Web;
+using System.Net.Mail;
+using System.Net;
 
 namespace ShopOnlineSystem.Models.DAO
 {
@@ -154,7 +158,7 @@ namespace ShopOnlineSystem.Models.DAO
                 throw ex;
             }
         }
-        //VA code cực mạnh
+        //VA co(de/py) cực mạnh
         #region Mã hóa pass
         // set permutations
         public const String strPermutation = "ouiveyxaqtd";
@@ -217,6 +221,61 @@ namespace ShopOnlineSystem.Models.DAO
             cryptostream.Close();
             return memstream.ToArray();
         }
+        #endregion
+        #region Quên pass
+        /*
+        
+        public static bool checkEmailValid(ModelView.UserView item)
+        {
+            db = new ShopOnlineEntities();
+            try
+            {
+                WebUser user = db.WebUsers.Where(x => x.email == item.email).FirstOrDefault() as WebUser;
+                if(user != null)
+                {
+                    //Send email reset pass
+                    string resetCode = Guid.NewGuid().ToString();
+                    sendVerificationLinkEmail(user.email, resetCode, "ResetPassword");
+                    user.resetPwCode = resetCode;
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.SaveChanges();
+   
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return false;
+        }
+        public static void sendVerificationLinkEmail(string email, string activationCode, string emailFor)
+        {
+            var verifyUrl = "/User/" + emailFor + "/" + activationCode;
+            var link = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, verifyUrl);
+            var fromEmail = new MailAddress("testkeylogger2019@gmail.com", "Nội thất Incom");
+            var toEmail = new MailAddress(email);
+            var fromEmailPass = "testkeylogger";
+            string subject = "";
+            string body = "";
+            if(emailFor == "ResetPassword")
+            {
+                subject = "Lấy lại mật khẩu";
+                body = "Chào bạn, </br></br> chúng tôi nhận được yêu cầu lấy lại mật khẩu. Vui lòng bấm vào link phía" +
+                    " dưới để đặt lại mật khẩu </br></br><a href=" + link + ">Link đặt lại mật khẩu</a>";
+            }
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPass)
+            };
+        }
+        
+    */
         #endregion
     }
 }
