@@ -133,6 +133,8 @@ namespace ShopOnlineSystem.Controllers
                     };
                     Repository.addOderDt(oder1);
                 }
+                Response.Cookies["userId"].Expires = DateTime.Now.AddDays(-1);
+
             }
             else { }
            
