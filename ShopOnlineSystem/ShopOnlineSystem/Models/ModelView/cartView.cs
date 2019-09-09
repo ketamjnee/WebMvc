@@ -9,6 +9,6 @@ namespace ShopOnlineSystem.Models.ModelView
     {
         public int idPro { get; set; }
         public int quantity { get; set; }
-
+        public string name { get; set; }
     }
 }

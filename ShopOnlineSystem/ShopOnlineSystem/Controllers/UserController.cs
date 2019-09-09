@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using ShopOnlineSystem.Models;
 using ShopOnlineSystem.Models.ModelView;
 using ShopOnlineSystem.Models.DAO;
+using Newtonsoft.Json;
+
 namespace ShopOnlineSystem.Controllers
 {
     public class UserController : Controller
@@ -34,7 +36,25 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult addCart(cartView item)
         {
-
+            if (Request.Cookies["cartItem"] == null)
+            {
+                cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name };
+                List<cartView> lcv = new List<cartView>();
+                lcv.Add(cv);
+                string rs = JsonConvert.SerializeObject(lcv);
+                HttpCookie ck = new HttpCookie("cartItem", rs);
+                ck.Expires.AddDays(2);
+                Response.Cookies.Add(ck);
+            }
+            else
+            {
+                string rs = Request.Cookies["cartItem"].Value;
+                List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
+                cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name };
+                lcv.Add(cv);
+                rs = JsonConvert.SerializeObject(lcv);
+                Response.Cookies["cartItem"].Value = rs;
+            }
             return RedirectToAction("Product", new { id = item.idPro });
         }
         public ActionResult Cart()
