@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using ShopOnlineSystem.Models;
+using ShopOnlineSystem.Models.ModelView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ShopOnlineSystem.Models;
-using ShopOnlineSystem.Models.ModelView;
-using ShopOnlineSystem.Models.DAO;
-using Newtonsoft.Json;
 
 namespace ShopOnlineSystem.Controllers
 {
@@ -26,7 +25,7 @@ namespace ShopOnlineSystem.Controllers
         public ActionResult Product(string id)
         {
             ViewBag.STT = 0;
-            if(id == null)
+            if (id == null)
             {
                 RedirectToAction("Index");
             }
@@ -38,9 +37,11 @@ namespace ShopOnlineSystem.Controllers
         {
             if (Request.Cookies["cartItem"] == null)
             {
-                cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name,price = item.price };
-                List<cartView> lcv = new List<cartView>();
-                lcv.Add(cv);
+                cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name, price = item.price };
+                List<cartView> lcv = new List<cartView>
+                {
+                    cv
+                };
                 string rs = JsonConvert.SerializeObject(lcv);
                 HttpCookie ck = new HttpCookie("cartItem", rs);
                 ck.Expires.AddDays(2);
@@ -50,12 +51,16 @@ namespace ShopOnlineSystem.Controllers
             {
                 string rs = Request.Cookies["cartItem"].Value;
                 List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
-                var obj = lcv.FirstOrDefault(x => x.idPro == item.idPro);
-                if (obj != null) {
+                cartView obj = lcv.FirstOrDefault(x => x.idPro == item.idPro);
+                if (obj != null)
+                {
                     obj.quantity += 1;
-                } else {
+                }
+                else
+                {
                     cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name, price = item.price };
-                    lcv.Add(cv); }
+                    lcv.Add(cv);
+                }
                 rs = JsonConvert.SerializeObject(lcv);
                 Response.Cookies["cartItem"].Value = rs;
             }
@@ -73,14 +78,14 @@ namespace ShopOnlineSystem.Controllers
                 List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
                 ViewBag.cartItem = lcv;
             }
-            
+
             return View();
         }
         public ActionResult deleteCart(int id)
         {
             string rs = Request.Cookies["cartItem"].Value;
             List<cartView> lcv = JsonConvert.DeserializeObject<List<cartView>>(rs);
-            var item = lcv.Single(r => r.idPro == id);
+            cartView item = lcv.Single(r => r.idPro == id);
             lcv.Remove(item);
             rs = JsonConvert.SerializeObject(lcv);
             Response.Cookies["cartItem"].Value = rs;
@@ -90,13 +95,13 @@ namespace ShopOnlineSystem.Controllers
         {
             if (Session["idUser"] == null)
             {
-                
+
             }
             else
             {
                 int id = Convert.ToInt32(Session["idUser"]);
-                var rs = Repository.getUserId(id);
-                ViewBag.User = rs;
+                UserView user = Repository.getUserId(id);
+                ViewBag.User = user;
             }
             if (Request.Cookies["cartItem"] == null)
             {
@@ -112,7 +117,25 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult checkOutDAO(OderView item)
         {
-            
+           
+            int idod = Repository.addOder(item);
+            if (idod > 0)
+            {
+                string rss = Request.Cookies["cartItem"].Value;
+                List<cartView> lvcc = JsonConvert.DeserializeObject<List<cartView>>(rss);
+                foreach (var c in lvcc)
+                {
+                    oderDetailView oder1 = new oderDetailView {
+                        IDO = idod,
+                        IDP = c.idPro,
+                        quantity = c.quantity,
+                        total = c.quantity*c.price
+                    };
+                    Repository.addOderDt(oder1);
+                }
+            }
+            else { }
+           
             return RedirectToAction("Index");
         }
         public ActionResult Login()
@@ -144,8 +167,9 @@ namespace ShopOnlineSystem.Controllers
                 }
 
             }
-            else {
-                Session["ErrorLogin"] = "Email hoặc mật khẩu không đúng"; 
+            else
+            {
+                Session["ErrorLogin"] = "Email hoặc mật khẩu không đúng";
                 return RedirectToAction("Login");
             }
 
@@ -190,7 +214,7 @@ namespace ShopOnlineSystem.Controllers
             else
             {
                 int id = Convert.ToInt32(Session["idUser"]);
-                var rs = Repository.getUserId(id);
+                UserView rs = Repository.getUserId(id);
                 return View(rs);
             }
 
@@ -202,7 +226,7 @@ namespace ShopOnlineSystem.Controllers
             if (Repository.updateInfo(item))
             {
                 Session["nameUser"] = item.name;
-                Session["Success"] = "Cập nhật thành công"; 
+                Session["Success"] = "Cập nhật thành công";
                 return RedirectToAction("UserProfile");
             }
             else
@@ -218,7 +242,7 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult Feedback()
         {
-          return View();
+            return View();
         }
         public ActionResult feddBackDAO(CommentView item)
         {
@@ -229,12 +253,12 @@ namespace ShopOnlineSystem.Controllers
             }
             else { return RedirectToAction("Feedback"); }
 
-            
+
         }
         public ActionResult clearCookie()
         {
             string[] myck = Request.Cookies.AllKeys;
-            foreach (var item in myck)
+            foreach (string item in myck)
             {
                 Response.Cookies[item].Expires = DateTime.Now.AddDays(-1);
             }

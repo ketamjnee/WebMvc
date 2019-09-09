@@ -182,6 +182,7 @@
     <Compile Include="Models\ModelView\Category.cs" />
     <Compile Include="Models\ModelView\CategoryView.cs" />
     <Compile Include="Models\ModelView\CommentView.cs" />
+    <Compile Include="Models\ModelView\oderDetailView.cs" />
     <Compile Include="Models\ModelView\OderView.cs" />
     <Compile Include="Models\ModelView\ProductView.cs" />
     <Compile Include="Models\ModelView\ProImageView.cs" />

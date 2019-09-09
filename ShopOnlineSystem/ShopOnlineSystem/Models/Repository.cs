@@ -117,6 +117,10 @@ namespace ShopOnlineSystem.Models
         {
             return OderDAO.addOder(item);
         }
+        public static bool addOderDt(ModelView.oderDetailView item)
+        {
+            return OderDAO.addOderDt(item);
+        }
         #endregion
     }
 

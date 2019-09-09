@@ -25,10 +25,11 @@ namespace ShopOnlineSystem.Models.DAO
                     CustName = item.CustName,
                     CustPhone = item.CustPhone,
                     DayCreate = DateTime.Today,
-                    IDU = 0,
+                    IDU = item.IDU,
                     Zipcode = "Hihi"
                 };
                 db.Oders.Add(od);
+                db.SaveChanges();
                 return od.id;
             }
             catch (Exception)
@@ -37,6 +38,32 @@ namespace ShopOnlineSystem.Models.DAO
                 throw;
             }
             return 0;
+        }
+        public static bool addOderDt(ModelView.oderDetailView item)
+        {
+            db = new ShopOnlineEntities();
+            try
+            {
+                OderDetail odt = new OderDetail
+                {
+                    IDO = item.IDO,
+                    IDP = item.IDP,
+                    quantity = item.quantity,
+                    total = item.total,
+                    StatusPay = false
+                   
+                };
+                db.OderDetails.Add(odt);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+                throw;
+            }
+            
         }
     }
 }

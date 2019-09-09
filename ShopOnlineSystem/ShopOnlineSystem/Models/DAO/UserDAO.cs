@@ -41,6 +41,7 @@ namespace ShopOnlineSystem.Models.DAO
             ModelView.UserView uv = new ModelView.UserView();
             try
             {
+                uv.id = user1.ID;
                 uv.name = user1.name;
                 uv.uAddress = user1.uAddress;
                 uv.email = user1.email;
