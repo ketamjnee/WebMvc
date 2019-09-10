@@ -4,7 +4,6 @@ using System.Security.Cryptography;
 using System.Text;
 using ShopOnlineSystem.Models.ModelData;
 using System.IO;
-using IdentityModel.Client;
 using System.Web;
 using System.Net.Mail;
 using System.Net;
