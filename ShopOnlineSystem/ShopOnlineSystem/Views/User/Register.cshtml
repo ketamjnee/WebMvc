@@ -36,78 +36,80 @@
 <body class="bg-gradient-primary">
 
     <div class="container">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <a href="@Url.Action("Index", "User")" class="btn-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Trở về trang chủ">×</a>
-                                </button>
-                                <h1 class="h4 text-gray-900 mb-4">Đăng ký Incom</h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-8"><div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="p-5">
+                    <div class="text-center">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <a href="@Url.Action("Index", "User")" class="btn-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Trở về trang chủ">×</a>
+                        </button>
+                        <h1 class="h4 text-gray-900 mb-4">Đăng ký Incom</h1>
+                    </div>
+                    <form class="user" name="myForm" action="@Url.Action("registerDAO")" method="post" onsubmit="return validateForm()">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" name="username" class="form-control form-control-user" id="inputUsername" placeholder="Username" required>
                             </div>
-                            <form class="user" name="myForm" action="@Url.Action("registerDAO")" method="post" onsubmit="return validateForm()">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="username" class="form-control form-control-user" id="inputUsername" placeholder="Username" required>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="email" name="email" class="form-control form-control-user" id="inputEmail" placeholder="Email" required>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" name="pwd" class="form-control form-control-user" id="inputPassword" placeholder="Mật khẩu" required>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" name="repwd" class="form-control form-control-user" id="inputPassword2" placeholder="Nhập lại mật khẩu" required>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="name" class="form-control form-control-user" id="inputName" placeholder="Tên" required>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="uAddress" class="form-control form-control-user" id="inputAddress" placeholder="Địa chỉ" required>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="phone" class="form-control form-control-user" id="inputPhone" placeholder="Số điện thoại" required>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="zipcode" class="form-control form-control-user" id="inputZipcode" placeholder="Zip code" required>
-                                    </div>
-                                </div>
-                                <!--Validate field-->
-                                @{
-                                    if (Session["Error"] != null)
-                                    {
-                                    <div class="small text-center text-danger">
-                                    <p id="txtValidateEmail">@Session["Error"].ToString() </p>
-                                </div>
-                                    }else
-                                    {
-
-                                    }
-                                    }
-                                <button type="submit" class=" btn btn-primary btn-user btn-block">Đăng ký</button>
-                            </form>
-                            <hr>
-                            
-                            <div class="text-center">
-                                <h1 id="test1">@ViewBag.FalseMail </h1>
-                                <a class="small" href="@Url.Action("Login","User")">Đã có tài khoản? Đăng nhập</a>
+                            <div class="col-sm-6">
+                                <input type="email" name="email" class="form-control form-control-user" id="inputEmail" placeholder="Email" required>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="password" name="pwd" class="form-control form-control-user" id="inputPassword" placeholder="Mật khẩu" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="password" name="repwd" class="form-control form-control-user" id="inputPassword2" placeholder="Nhập lại mật khẩu" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" name="name" class="form-control form-control-user" id="inputName" placeholder="Tên" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="uAddress" class="form-control form-control-user" id="inputAddress" placeholder="Địa chỉ" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" name="phone" class="form-control form-control-user" id="inputPhone" placeholder="Số điện thoại" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="zipcode" class="form-control form-control-user" id="inputZipcode" placeholder="Zip code" required>
+                            </div>
+                        </div>
+                        <!--Validate field-->
+                        @{
+                            if (Session["Error"] != null)
+                            {
+                                <div class="small text-center text-danger">
+                                    <p id="txtValidateEmail">@Session["Error"].ToString() </p>
+                                </div>
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        <button type="submit" class=" btn btn-primary btn-user btn-block">Đăng ký</button>
+                    </form>
+                    <hr>
+
+                    <div class="text-center">
+                        <h1 id="test1">@ViewBag.FalseMail </h1>
+                        <a class="small" href="@Url.Action("Login","User")">Đã có tài khoản? Đăng nhập</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div></div>
+        </div>
+        
 
     </div>
 

@@ -5,11 +5,18 @@
     List<ShopOnlineSystem.Models.ModelView.cartView> lcv = ViewBag.cartItem as List<ShopOnlineSystem.Models.ModelView.cartView>;
     int tong = 0;
     ShopOnlineSystem.Models.ModelView.UserView us = null;
+    int iduser = 0;
     if (Session["idUSer"] != null)
     {
-         us = ViewBag.User as ShopOnlineSystem.Models.ModelView.UserView;
+        iduser = Convert.ToInt32(Session["idUSer"].ToString());
+        us = ViewBag.User as ShopOnlineSystem.Models.ModelView.UserView;
     }
-    
+    else
+    {
+        iduser = 0;
+       us = new ShopOnlineSystem.Models.ModelView.UserView();
+    }
+
 }
 
 <div class="cart-table-area section-padding-100">
@@ -35,7 +42,7 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <input type="text" name="CustAddress" class="form-control" id="email" placeholder="Địa chỉ" value="@(us.uAddress??"")">
-                                <input type="hidden" name="id" value="@us.id" />
+                                <input type="hidden" name="IDU" value="@iduser" />
                             </div>
                         </div>
 

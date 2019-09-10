@@ -128,6 +128,14 @@ namespace ShopOnlineSystem.Models
         {
             return OderDAO.addOder(item);
         }
+        public static bool addOderDt(ModelView.oderDetailView item)
+        {
+            return OderDAO.addOderDt(item);
+        }
+        public static List<ModelData.Oder> getListOder()
+        {
+            return OderDAO.getListOder();
+        }
         #endregion
     }
 
