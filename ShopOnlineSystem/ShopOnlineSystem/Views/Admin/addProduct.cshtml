@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-12 col-lg-6">
         <h2 class="mb-3">Thêm sản phẩm</h2>
-        <form action="@Url.Action("addProductDAO")" method="post"  enctype="multipart/form-data">
+        <form action="@Url.Action("addProductDAO")" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Tên Sản Phẩm</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="" required>
@@ -44,6 +44,16 @@
             <br />
             <button type="submit" class="btn btn-success">Thêm sản phẩm</button>
         </form>
+        <script>
+            $(function () {
+                $("input[type = 'submit']").click(function () {
+                    var $fileUpload = $("input[type='file']");
+                    if (parseInt($fileUpload.get(0).files.length) > 4) {
+                        alert("You are only allowed to upload a maximum of 4 files");
+                    }
+                });
+            });
+        </script>
     </div>
 </div>
 
