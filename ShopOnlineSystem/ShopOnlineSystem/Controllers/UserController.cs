@@ -18,10 +18,26 @@ namespace ShopOnlineSystem.Controllers
             ViewBag.Prod = Repository.GetListProdTitle(9);
             return View();
         }
-        public ActionResult Category()
+        public ActionResult Category(string id,string pageindex)
         {
-            ViewBag.Cat = Repository.GetListCat();
-            return View();
+            if(id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if(pageindex == null)
+                {
+                    ViewBag.Prod = Repository.GetListPViewPaging(0, 10, Convert.ToInt32(id));
+                }
+                else
+                {
+                    ViewBag.Prod = Repository.GetListPViewPaging(Convert.ToInt32(pageindex), 10, Convert.ToInt32(id));
+                }
+                ViewBag.Cate = Repository.GetCatById(Convert.ToInt32(id));
+                ViewBag.Cat = Repository.GetListCat();
+                return View();
+            }          
         }
         public ActionResult Product(string id)
         {
@@ -112,7 +128,6 @@ namespace ShopOnlineSystem.Controllers
         }
         public ActionResult checkOutDAO(OderView item)
         {
-            
             return RedirectToAction("Index");
         }
         public ActionResult Login()
@@ -150,10 +165,12 @@ namespace ShopOnlineSystem.Controllers
             }
 
         }
+
         public ActionResult Register()
         {
             return View();
         }
+
         public ActionResult registerDAO(UserView item)
         {
 
@@ -177,10 +194,12 @@ namespace ShopOnlineSystem.Controllers
             }
 
         }
+
         public ActionResult ForgotPassword()
         {
             return View();
         }
+
         public ActionResult UserProfile()
         {
             if (Session["idUser"] == null)
@@ -195,6 +214,7 @@ namespace ShopOnlineSystem.Controllers
             }
 
         }
+
         public ActionResult UpdateUserDAO(UserView item)
         {
             //Gáy nàoD:\WFC Demo\GitHub\ketamjnee\WebMvc\ShopOnlineSystem\ShopOnlineSystem\Models\DAO\ProductDAO.cs
@@ -212,14 +232,17 @@ namespace ShopOnlineSystem.Controllers
             }
             return RedirectToAction("UserProfile");
         }
+
         public ActionResult Order()
         {
             return View();
         }
+
         public ActionResult Feedback()
         {
           return View();
         }
+
         public ActionResult feddBackDAO(CommentView item)
         {
             if (item.email != null)
@@ -231,6 +254,7 @@ namespace ShopOnlineSystem.Controllers
 
             
         }
+
         public ActionResult clearCookie()
         {
             string[] myck = Request.Cookies.AllKeys;
@@ -239,6 +263,12 @@ namespace ShopOnlineSystem.Controllers
                 Response.Cookies[item].Expires = DateTime.Now.AddDays(-1);
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult LoadProd(int catid)
+        {
+
+            return RedirectToAction("Category",new {id = catid });
         }
     }
 }
