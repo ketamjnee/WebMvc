@@ -121,6 +121,10 @@ namespace ShopOnlineSystem.Models
         {
             return OderDAO.addOderDt(item);
         }
+        public static List<ModelData.Oder> getListOder()
+        {
+            return OderDAO.getListOder();
+        }
         #endregion
     }
 

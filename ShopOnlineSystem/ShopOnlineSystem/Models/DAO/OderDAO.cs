@@ -2,13 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace ShopOnlineSystem.Models.DAO
 {
     public class OderDAO
     {
-       public static ShopOnlineEntities db = null;
+        public static ShopOnlineEntities db = null;
         public OderDAO()
         {
             db = new ShopOnlineEntities();
@@ -21,10 +20,11 @@ namespace ShopOnlineSystem.Models.DAO
                 Oder od = new Oder
                 {
                     CustAddress = item.CustAddress,
+
                     CustEmail = item.CustEmail,
                     CustName = item.CustName,
                     CustPhone = item.CustPhone,
-                    DayCreate = DateTime.Today,
+                    DayCreate = DateTime.Now,
                     IDU = item.IDU,
                     Zipcode = "Hihi"
                 };
@@ -51,7 +51,7 @@ namespace ShopOnlineSystem.Models.DAO
                     quantity = item.quantity,
                     total = item.total,
                     StatusPay = false
-                   
+
                 };
                 db.OderDetails.Add(odt);
                 db.SaveChanges();
@@ -63,7 +63,13 @@ namespace ShopOnlineSystem.Models.DAO
                 return false;
                 throw;
             }
-            
+
+        }
+        public static List<Oder> getListOder()
+        {
+            db = new ShopOnlineEntities();
+            IQueryable<Oder> rs = from a in db.Oders select a;
+            return rs.ToList();
         }
     }
 }

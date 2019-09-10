@@ -17,6 +17,7 @@ namespace ShopOnlineSystem.Controllers
             ViewBag.Prod = Repository.GetListProdTitle(9);
             return View();
         }
+        #region cate cart 
         public ActionResult Category()
         {
             ViewBag.Cat = Repository.GetListCat();
@@ -140,6 +141,8 @@ namespace ShopOnlineSystem.Controllers
            
             return RedirectToAction("Index");
         }
+        #endregion
+        #region Login User
         public ActionResult Login()
         {
             return View();
@@ -242,6 +245,8 @@ namespace ShopOnlineSystem.Controllers
             }
             return RedirectToAction("UserProfile");
         }
+        #endregion
+        #region oder feedback
         public ActionResult Order()
         {
             return View();
@@ -270,6 +275,7 @@ namespace ShopOnlineSystem.Controllers
             }
             return RedirectToAction("Index");
         }
+        #endregion
         #region Forgot password
         //VA code cực gãy
         public ActionResult ForgotPassword()
