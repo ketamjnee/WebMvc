@@ -224,29 +224,23 @@ namespace ShopOnlineSystem.Models.DAO
         #endregion
         #region Quên pass      
         public static void sendVerificationLinkEmail(string email, string emailFor = "ResetPassword")
-        {
+        {           
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
             var verifyUrl = "/User/" + emailFor;
             var link = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, verifyUrl);
             var fromEmail = new MailAddress("testkeylogger2019@gmail.com", "Nội thất Incom");
             var toEmail = new MailAddress(email);
             var fromEmailPass = "testkeylogger";
-            string subject = "";
-            string body = "";
-            if(emailFor == "ResetPassword")
-            {
-                subject = "Lấy lại mật khẩu";
-                body = "Chào bạn, </br> chúng tôi nhận được yêu cầu lấy lại mật khẩu. Vui lòng bấm vào link phía" +
-                    " dưới để đặt lại mật khẩu </br><a href=" + link + ">Link đặt lại mật khẩu</a>";
-            }
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPass)
-            };
+            string subject = "Lấy lại mật khẩu";
+            string body = "Chào bạn, chúng tôi nhận được yêu cầu lấy lại mật khẩu. Vui lòng bấm vào link phía" +
+                    " dưới để đặt lại mật khẩu " + link + " Link đặt lại mật khẩu";
+            MailMessage mail = new MailMessage(fromEmail.Address, toEmail.Address, subject, body);
+            smtp.Port = 25;
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Credentials = new NetworkCredential(fromEmail.Address, fromEmailPass);
+            smtp.Timeout = 500000;
+            smtp.Send(mail);
         }
         
     
