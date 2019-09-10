@@ -112,6 +112,7 @@ namespace ShopOnlineSystem.Controllers
             return RedirectToAction("editProduct");
         }
         #endregion
+
         #region Setting
         public ActionResult userSetting()
         {
@@ -154,11 +155,14 @@ namespace ShopOnlineSystem.Controllers
             Session["userType"] = null;
             return RedirectToAction("Index", "User");
         }
+
         #endregion
+
         #region Tương tác
         public ActionResult OrderAdmin()
         {
-            return View();
+            var rs = Repository.getListOder();
+            return View(rs);
         }
         public ActionResult FeedbackAdmin()
         {

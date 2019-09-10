@@ -34,6 +34,10 @@ namespace ShopOnlineSystem.Models
         {
             return CategoryDAO.GetList();
         }
+        public static ModelView.Category GetCatById(int id)
+        {
+            return CategoryDAO.GetCatByID(id);
+        }
         #endregion
         
         #region product
@@ -73,9 +77,15 @@ namespace ShopOnlineSystem.Models
         {
             return ProductDAO.GetListProdVIew();
         }
+
         public static ModelView.PView GetProdViewByID(int id)
         {
             return ProductDAO.GetProdByID(id);
+        }
+
+        public static List<ModelView.ProductView> GetListPViewPaging(int pageindex, int pagesize,int idc)
+        {
+            return ProductDAO.GetListPaging(pageindex,pagesize,idc);
         }
         #endregion
 
@@ -112,6 +122,7 @@ namespace ShopOnlineSystem.Models
             return ProImageDAO.AddNewImage(item);
         }
         #endregion
+
         #region oder
         public static int addOder(ModelView.OderView item)
         {
@@ -120,6 +131,10 @@ namespace ShopOnlineSystem.Models
         public static bool addOderDt(ModelView.oderDetailView item)
         {
             return OderDAO.addOderDt(item);
+        }
+        public static List<ModelData.Oder> getListOder()
+        {
+            return OderDAO.getListOder();
         }
         #endregion
     }

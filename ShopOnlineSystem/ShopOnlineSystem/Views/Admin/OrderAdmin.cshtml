@@ -1,22 +1,36 @@
-﻿
+﻿@model List<ShopOnlineSystem.Models.ModelData.Oder>
 @{
     ViewBag.Title = "Order";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int stt = 0;
 }
 <h2 class="mb-3">Đơn hàng</h2>
 <table class="table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Sản phẩm</th>
+                    <th scope="col">Tên khách hàng</th>
                     <th scope="col">Ngày đặt</th>
-                    <th scope="col">Khách hàng</th>
                     <th scope="col">Địa chỉ</th>
-                    <th scope="col">Giao hàng</th>
-                    <th scope="col">Thanh toán</th>
+                    <th scope="col">Email khách hàng</th>
+                    <th scope="col">Số điện thoại</th>
                     <th scope="col">Tổng tiền</th>
                     <th scope="col">Hành động</th>
                 </tr>
+                @foreach (var item in Model)
+                {
+                    stt += 1;
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.CustName</td>
+                    <td>@item.DayCreate</td>
+                    <td>@item.CustAddress</td>
+                    <td>@item.CustEmail</td>
+                    <td>@item.CustPhone</td>
+                    <td>@item.OderDetails.Where(x=> x.IDO == item.id).Select(s=>s.total).Sum()</td>
+                </tr>
+
+                }
             </thead>
             <tbody>
                 <!--Dữ liệu bảng order-->

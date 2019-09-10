@@ -17,10 +17,34 @@ namespace ShopOnlineSystem.Controllers
             ViewBag.Prod = Repository.GetListProdTitle(9);
             return View();
         }
-        public ActionResult Category()
+        public ActionResult Category(string id,string pageindex)
         {
-            ViewBag.Cat = Repository.GetListCat();
-            return View();
+            if(id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if(pageindex == null)
+                {
+                    ViewBag.Prod = Repository.GetListPViewPaging(0, 10, Convert.ToInt32(id));
+                }
+                else
+                {
+                    ViewBag.Prod = Repository.GetListPViewPaging(Convert.ToInt32(pageindex), 10, Convert.ToInt32(id));
+                }
+                ViewBag.Cate = Repository.GetCatById(Convert.ToInt32(id));
+                ViewBag.Cat = Repository.GetListCat();
+                if (pageindex == null)
+                {
+                    ViewBag.Page = 1;
+                }
+                else
+                {
+                    ViewBag.Page = Convert.ToInt32(pageindex)+1;
+                }              
+                return View();
+            }          
         }
         public ActionResult Product(string id)
         {
@@ -91,6 +115,7 @@ namespace ShopOnlineSystem.Controllers
             Response.Cookies["cartItem"].Value = rs;
             return RedirectToAction("Cart");
         }
+        #region Check out
         public ActionResult Checkout()
         {
             if (Session["idUser"] == null)
@@ -140,6 +165,9 @@ namespace ShopOnlineSystem.Controllers
            
             return RedirectToAction("Index");
         }
+        #endregion
+
+        #region Login User
         public ActionResult Login()
         {
             return View();
@@ -180,13 +208,15 @@ namespace ShopOnlineSystem.Controllers
             {
                 Session["ErrorLogin"] = "Email hoặc mật khẩu không đúng";
                 return RedirectToAction("Login");
-            
             }
+
         }
+
         public ActionResult Register()
         {
             return View();
         }
+
         public ActionResult registerDAO(UserView item)
         {
 
@@ -210,7 +240,8 @@ namespace ShopOnlineSystem.Controllers
             }
 
         }
-      
+
+
         public ActionResult UserProfile()
         {
             if (Session["idUser"] == null)
@@ -225,6 +256,7 @@ namespace ShopOnlineSystem.Controllers
             }
 
         }
+
         public ActionResult UpdateUserDAO(UserView item)
         {
             //Gáy nàoD:\WFC Demo\GitHub\ketamjnee\WebMvc\ShopOnlineSystem\ShopOnlineSystem\Models\DAO\ProductDAO.cs
@@ -242,14 +274,18 @@ namespace ShopOnlineSystem.Controllers
             }
             return RedirectToAction("UserProfile");
         }
+        #endregion
+        #region oder feedback
         public ActionResult Order()
         {
             return View();
         }
+
         public ActionResult Feedback()
         {
             return View();
         }
+
         public ActionResult feddBackDAO(CommentView item)
         {
             if (item.email != null)
@@ -261,6 +297,7 @@ namespace ShopOnlineSystem.Controllers
 
 
         }
+
         public ActionResult clearCookie()
         {
             string[] myck = Request.Cookies.AllKeys;
@@ -270,6 +307,7 @@ namespace ShopOnlineSystem.Controllers
             }
             return RedirectToAction("Index");
         }
+        #endregion
         #region Forgot password
         //VA code cực gãy
         public ActionResult ForgotPassword()
