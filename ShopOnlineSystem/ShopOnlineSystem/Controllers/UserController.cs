@@ -35,6 +35,14 @@ namespace ShopOnlineSystem.Controllers
                 }
                 ViewBag.Cate = Repository.GetCatById(Convert.ToInt32(id));
                 ViewBag.Cat = Repository.GetListCat();
+                if (pageindex == null)
+                {
+                    ViewBag.Page = 1;
+                }
+                else
+                {
+                    ViewBag.Page = Convert.ToInt32(pageindex)+1;
+                }              
                 return View();
             }          
         }
@@ -107,6 +115,7 @@ namespace ShopOnlineSystem.Controllers
             Response.Cookies["cartItem"].Value = rs;
             return RedirectToAction("Cart");
         }
+        #region Check out
         public ActionResult Checkout()
         {
             if (Session["idUser"] == null)
@@ -157,6 +166,7 @@ namespace ShopOnlineSystem.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+
         #region Login User
         public ActionResult Login()
         {
@@ -231,10 +241,6 @@ namespace ShopOnlineSystem.Controllers
 
         }
 
-        public ActionResult ForgotPassword()
-        {
-            return View();
-        }
 
         public ActionResult UserProfile()
         {

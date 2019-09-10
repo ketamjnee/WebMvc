@@ -15,7 +15,7 @@
             <ul>
                 @foreach (var item in ViewBag.Cat as List<ShopOnlineSystem.Models.ModelView.Category>)
                 {
-                    <li><a href="@Url.Action("LoadProd",new { catid = item.ID})">@item.name</a></li>
+                    <li><a href="@Url.Action("Category", new { id = item.ID,pageindex = "0"})">@item.name</a></li>
                 }
             </ul>
         </div>
@@ -42,7 +42,7 @@
                         <div class="product-meta-data">
                             <div class="line"></div>
                             <p class="product-price">@item.price</p>
-                            <a href="product-details.html">
+                            <a href="@Url.Action("Product",new { id = item.id})">
                                 <h6>@item.name</h6>
                             </a>
                         </div>
@@ -69,14 +69,24 @@
                 <!-- Pagination -->
                 <nav aria-label="navigation">
                     <ul class="pagination justify-content-end mt-50">
-                        @for (int i = 0; i < ((ViewBag.Cate.ProductCount / 10)); i++)
+                        @{int stock = (ViewBag.Cate as ShopOnlineSystem.Models.ModelView.Category).ProductCount;}
+                        @{int catid = (ViewBag.Cate as ShopOnlineSystem.Models.ModelView.Category).ID;}
+                        @{ int stt = 1;}
+                        @for (int i = 0; i <= (stock / 10); i++)
                         {
-                            int count = ViewBag.Cate.ProductCount;
-                            int stt = 1;
+                            int count = stock;
                             if (count != 0)
                             {
-                                <li class="page-item"><a class="page-link" href="#">@stt.</a></li>
+                                if (ViewBag.Page == stt)
+                                {
+                                    <li class="page-item active"><a class="page-link" href="@Url.Action("Category",new {id=catid, pageindex = (stt-1)})">@stt.</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item"><a class="page-link" href="@Url.Action("Category",new {id=catid, pageindex = (stt-1)})">@stt.</a></li>
+                                }
                             }
+                            stt++;
                             count -= 10;
                         }
                     </ul>
