@@ -28,6 +28,7 @@
                     <td>@item.CustEmail</td>
                     <td>@item.CustPhone</td>
                     <td>@item.OderDetails.Where(x=> x.IDO == item.id).Select(s=>s.total).Sum()</td>
+
                 </tr>
 
                 }

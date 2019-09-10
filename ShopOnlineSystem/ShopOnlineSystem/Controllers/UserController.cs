@@ -56,13 +56,13 @@ namespace ShopOnlineSystem.Controllers
                 cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name, price = item.price };
                 List<cartView> lcv = new List<cartView>
                 {
-                    cv
-                };
                 string rs = JsonConvert.SerializeObject(lcv);
                 HttpCookie ck = new HttpCookie("cartItem", rs);
                 ck.Expires.AddDays(2);
                 Response.Cookies.Add(ck);
             }
+                
+            
             else
             {
                 string rs = Request.Cookies["cartItem"].Value;
