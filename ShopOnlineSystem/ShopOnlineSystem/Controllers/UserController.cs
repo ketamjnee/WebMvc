@@ -11,6 +11,7 @@ namespace ShopOnlineSystem.Controllers
 {
     public class UserController : Controller
     {
+
         // GET: User
         public ActionResult Index()
         {
@@ -62,14 +63,12 @@ namespace ShopOnlineSystem.Controllers
             if (Request.Cookies["cartItem"] == null)
             {
                 cartView cv = new cartView { idPro = item.idPro, quantity = item.quantity, name = item.name, price = item.price };
-                List<cartView> lcv = new List<cartView>
-                {
+                List<cartView> lcv = new List<cartView>();
                 string rs = JsonConvert.SerializeObject(lcv);
                 HttpCookie ck = new HttpCookie("cartItem", rs);
                 ck.Expires.AddDays(2);
                 Response.Cookies.Add(ck);
             }
-                
             
             else
             {
@@ -158,7 +157,7 @@ namespace ShopOnlineSystem.Controllers
                     };
                     Repository.addOderDt(oder1);
                 }
-                Response.Cookies["userId"].Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies["cartItem"].Expires = DateTime.Now.AddDays(-1);
 
             }
             else { }
@@ -292,6 +291,7 @@ namespace ShopOnlineSystem.Controllers
             {
                 Repository.addFeedBack(item);
                 return RedirectToAction("Index");
+
             }
             else { return RedirectToAction("Feedback"); }
 
